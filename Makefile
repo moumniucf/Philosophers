@@ -2,7 +2,7 @@ NAME = philo
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -fsanitize=thread -g3 #-fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=thread #-g3 #-fsanitize=address -g3
 
 HEADER = philo.h
 

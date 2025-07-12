@@ -41,9 +41,8 @@ int main(int ac, char **av)
 {
 	int i;
 	i = 1;
-	t_data *d;
-	d = ft_arg_in(av, d);
-	struct timeval p;
+	t_data *d = malloc(sizeof(t_data));
+	ft_arg_in(av, &d);
 	if((ac - 1) > 5)
 	{
 		printf("Error\n");
@@ -60,6 +59,6 @@ int main(int ac, char **av)
 	}
 	ft_fork_in(d);
 	ft_philo_in(d);
-	printf("---%d\n", d->number_of_philo);
-	printf("---%d\n", gettimeofday(&p, NULL));
+	ft_create_thread( d);
+	ft_join_thread( d);
 }
