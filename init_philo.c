@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:43:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/12 17:32:24 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/13 17:32:40 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void ft_create_thread(t_data *ph)
 	int i = 0;
 	while(i < ph->number_of_philo)
 	{
-		pthread_create(&(ph->philo[i].ts), NULL, &print_f, &ph->philo[i]);
+		pthread_create(&(ph->philo[i].ts), NULL, &ft_routine_philo, &ph->philo[i]);
 		i++;
 	}
 }

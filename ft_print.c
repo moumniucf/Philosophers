@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routine_philo.c                                    :+:      :+:    :+:   */
+/*   ft_print.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/03 11:50:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/13 17:38:17 by youmoumn         ###   ########.fr       */
+/*   Created: 2025/07/13 15:28:35 by youmoumn          #+#    #+#             */
+/*   Updated: 2025/07/13 15:31:39 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*ft_routine_philo(void *arg)
+void	*ft_printf()
 {
-	//int i = 0;
-	t_data *data = (t_data *)arg;
-	printf(";;\n");
-	//while(i < data->number_of_philo)
-	//{
-	//	i++;
-	//}
+	t_data *data;
+	printf("is %d eating", data->philo->id);
 	return NULL;
 }

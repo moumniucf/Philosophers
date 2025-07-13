@@ -41,7 +41,8 @@ int main(int ac, char **av)
 {
 	int i;
 	i = 1;
-	t_data *d = malloc(sizeof(t_data));
+	//t_data *d = malloc(sizeof(t_data));
+	t_data *d;
 	ft_arg_in(av, &d);
 	if((ac - 1) > 5)
 	{
@@ -59,6 +60,6 @@ int main(int ac, char **av)
 	}
 	ft_fork_in(d);
 	ft_philo_in(d);
-	ft_create_thread( d);
+	ft_create_thread(d);
 	ft_join_thread( d);
 }

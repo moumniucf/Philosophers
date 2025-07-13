@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 18:30:04 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/12 17:24:14 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/13 17:33:37 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_data
 	int time_toeat;
 	int time_tosleep;
 	int time_tothink;
+	int is_dead;
 	int number_of_philo;
 	int number_of_time_to_eat;
 	pthread_mutex_t *fork;
@@ -45,7 +46,7 @@ int		ft_isalpha(int c);
 void	ft_arg_in(char **av, t_data **p);
 int		ft_atoi(char *str);
 void	ft_fork_in(t_data *ph);
-void	*routine_philo();
 void	ft_philo_in(t_data *ph);
-void ft_create_thread( t_data *ph);
-void ft_join_thread( t_data *ph);
+void ft_create_thread(t_data *ph);
+void ft_join_thread(t_data *ph);
+void	*ft_routine_philo(void *arg);
