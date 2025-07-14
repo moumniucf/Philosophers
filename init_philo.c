@@ -6,13 +6,15 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:43:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/13 17:32:40 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/14 11:40:21 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 void	ft_arg_in(char **av, t_data **d)
 {
+	if(!(*d))
+		return ;
 	(*d)->number_of_philo = ft_atoi(av[1]);
 	(*d)->time_todie = ft_atoi(av[2]);
 	(*d)->time_toeat = ft_atoi(av[3]);
