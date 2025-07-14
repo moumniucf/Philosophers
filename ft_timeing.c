@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routine_philo.c                                    :+:      :+:    :+:   */
+/*   ft_timeing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/03 11:50:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/14 17:28:42 by youmoumn         ###   ########.fr       */
+/*   Created: 2025/07/14 15:18:30 by youmoumn          #+#    #+#             */
+/*   Updated: 2025/07/14 17:28:03 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int is_dead(t_data *da)
+//void ft_monitoring(t_data *d)
+//{
+//	(void)d;
+//	struct timeval x;
+//	printf("|%d|\n", gettimeofday(&x, NULL));
+//}
+#include <sys/time.h>
+#include <stdio.h>
+
+long	get_current_time_ms(void)
 {
-	if(da->time_toeat > da->time_tosleep)
-		return (1);
-	return (0);
+	struct timeval	tv;
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-void	*ft_routine_philo(void *arg)
+void	ft_monitoring(t_data *d)
 {
-	//int i = 0;
-	t_data *data = (t_data *)arg;
-	(void)data;
-	//printf("+%d+\n", data->number_of_philo);
-	//printf("-%d-\n", is_dead(data));
-	//while(1)
-	//{
-	//	if(4)
-	//	{
-			
-	//	}
-	//	i++;
-	//}
-	return NULL;
+	(void)d;
+	printf("|%ld|\n", get_current_time_ms());
 }
