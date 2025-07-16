@@ -6,11 +6,22 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 11:50:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/14 18:15:34 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/16 00:58:27 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+int is_oddph(t_data *da)
+{
+	int i = 0;
+	while(i < da->number_of_philo)
+	{
+		if(da->philo[i].id % 2 == 0)
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 int is_dead(t_data *da)
 {
@@ -21,14 +32,15 @@ int is_dead(t_data *da)
 
 void	*ft_routine_philo(void *arg)
 {
-	//int i = 0;
-	t_data *data = (t_data *)arg;
-	(void)data;
-	while(1)
+	t_philo *ph = (t_philo *)arg;
+	//while(1)
 	{
-		pthread_mutex_lock(data->philo->l_f);
-		pthread_mutex_lock(data->philo->r_f);
-		printf("%d is eating\n", data->philo->id);
+		printf("[%d]\n", ph->id);
+		if(ph->id % 2 != 0)
+			usleep(1000);
+		printf("llllll\n");
+		//pthread_mutex_lock(data->philo->l_f);
+		//pthread_mutex_lock(data->philo->r_f);
 	}
 	return NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:43:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/14 11:40:21 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/16 00:47:30 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	ft_philo_in(t_data *ph)
 	while (i < ph->number_of_philo)
 	{
 		ph->philo[i].id = i + 1;
+		//printf("||%d||\n", ph->philo[i].id);
 		ph->philo[i].l_f = &ph->fork[i];
 		ph->philo[i].r_f = &ph->fork[(i + 1) % ph->number_of_philo];
 		ph->philo[i].last_meal = 0;

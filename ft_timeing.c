@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 15:18:30 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/14 17:28:03 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/15 22:20:16 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ long	get_current_time_ms(void)
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-void	ft_monitoring(t_data *d)
-{
-	(void)d;
-	printf("|%ld|\n", get_current_time_ms());
-}
+//void	ft_monitoring(t_data *d)
+//{
+//	(void)d;
+//	//printf("|%ld|\n", get_current_time_ms());
+//}

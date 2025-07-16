@@ -63,6 +63,6 @@ int main(int ac, char **av)
 	ft_fork_in(d);
 	ft_philo_in(d);
 	ft_create_thread(d);
-	ft_monitoring(d);
+	//ft_monitoring(d);
 	ft_join_thread( d);
 }
