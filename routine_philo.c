@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 11:50:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/16 18:05:46 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/16 18:52:11 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int is_oddph(t_philo *ph)
 void	*ft_routine_philo(void *arg)
 {
 	t_philo *ph = (t_philo *)arg;
+	while(1)
+	{
 	if(ph->id % 2 != 0)
 		usleep(1000);
 	else
@@ -46,7 +48,8 @@ void	*ft_routine_philo(void *arg)
 		printf("%d is eating\n", ph->id);
 		usleep(ph->data->time_toeat);
 		printf("%d is thinking\n", ph->id);
-		usleep(ph->data->time_tothink);
+		//usleep(ph->data->time_tothink);
+	}
 	}
 	return NULL;
 }
