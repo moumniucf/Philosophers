@@ -42,10 +42,11 @@ int main(int ac, char **av)
 	int i;
 	i = 1;
 	t_philo *d = malloc(sizeof(t_philo));
-	d->data = malloc(sizeof(t_data));
+	//d->data = malloc(sizeof(t_data));
+	t_data *data = malloc(sizeof(t_data));
 	if(!d || !d->data)
 		return (1);
-	ft_arg_in(av, &d);
+	ft_arg_in(av, data);
 	if((ac - 1) > 5)
 	{
 		printf("Error\n");
@@ -60,13 +61,8 @@ int main(int ac, char **av)
 		}
 		i++;
 	}
-	ft_fork_in(d);
-	ft_philo_in(d, d->data);
-	ft_create_thread(d);
-	ft_join_thread(d, d->data);
-	while(i < d->data->number_of_philo)
-	{
-		printf("|[%d]|\n", d->id);
-		i++;
-	}
+	ft_fork_in(data);
+	ft_philo_in(data);
+	ft_create_thread(data);
+	ft_join_thread(data);
 }

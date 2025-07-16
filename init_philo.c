@@ -6,34 +6,35 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:43:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/16 13:01:20 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/16 16:59:33 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-void	ft_arg_in(char **av, t_philo **d)
+void	ft_arg_in(char **av, t_data *da)
 {
-	if(!(*d) || !d)
+	if(!da)
 		return ;
-	(*d)->data->number_of_philo = ft_atoi(av[1]);
-	(*d)->data->time_todie = ft_atoi(av[2]);
-	(*d)->data->time_toeat = ft_atoi(av[3]);
-	(*d)->data->time_tosleep = ft_atoi(av[4]);
+	(da)->number_of_philo = ft_atoi(av[1]);
+	(da)->time_todie = ft_atoi(av[2]);
+	(da)->time_toeat = ft_atoi(av[3]);
+	(da)->time_tosleep = ft_atoi(av[4]);
 	if(av[5])
-		(*d)->data->number_of_time_to_eat = ft_atoi(av[5]);
+		(da)->number_of_time_to_eat = ft_atoi(av[5]);
 	else
-		(*d)->data->number_of_time_to_eat = -1;
+		(da)->number_of_time_to_eat = -1;
 }
 
-void	ft_fork_in(t_philo *ph)
+void	ft_fork_in(t_data *data)
 {
-	int i = 0;
-	ph->fork = malloc(ph->data->number_of_philo * sizeof(pthread_mutex_t));
-	if(!ph->fork)
+	int i;
+	data->fork = malloc(sizeof(pthread_mutex_t) * data->number_of_philo);
+	if (!data->fork)
 		return ;
-	while(i < ph->data->number_of_philo)
+	i = 0;
+	while(i < data->number_of_philo)
 	{
-		pthread_mutex_init(&ph->fork[i], NULL);
+		pthread_mutex_init(&data->fork[i], NULL);
 		i++;
 	}
 }
@@ -44,39 +45,39 @@ void	*print_f(void *x)
 	return NULL;
 }
 
-void	ft_philo_in(t_philo *philo, t_data *data)
-{
-	int			i;
-	
-	philo = malloc(sizeof(t_philo) * (data->number_of_philo));
-	if (!philo)
-		return ;
-	i = 0;
-	while (i < data->number_of_philo)
-	{
-		philo[i].id = i + 1;
-		philo[i].l_f = &philo->fork[i];
-		philo[i].r_f = &philo->fork[(i + 1) % data->number_of_philo];
-		philo[i].last_meal = 0;
-		philo[i].meal_c = 0;
-		i++;
-	}
-}
-void ft_create_thread(t_philo *ph)
+void	ft_philo_in(t_data *data)
 {
 	int i = 0;
-	while(i < ph->data->number_of_philo)
+	data->ph = malloc(sizeof(t_philo) * data->number_of_philo);
+	if(!data->ph)
+		return ;
+	while(i < data->number_of_philo)
 	{
-		pthread_create(&(ph[i].ts), NULL, &ft_routine_philo, &ph[i]);
+		data->ph[i].id = i + 1;
+		data->ph[i].meal_c = 0;
+		data->ph[i].last_meal = 0;
+		data->ph[i].l_f = &data->fork[i];
+		data->ph[i].r_f = &data->fork[(i + 1) % data->number_of_philo];
+		data->ph[i].data = data;
 		i++;
 	}
 }
-void ft_join_thread(t_philo *ph, t_data *data)
+void ft_create_thread(t_data *data)
 {
 	int i = 0;
 	while(i < data->number_of_philo)
 	{
-		pthread_join((ph->ts), NULL);
+		pthread_create(&data->ph[i].ts, NULL, &ft_routine_philo, &data->ph[i]);
+		//pthread_create(&data->ph[i].ts, NULL, &print_f, &data->ph[i]);
+		i++;
+	}
+}
+void ft_join_thread(t_data *data)
+{
+	int i = 0;
+	while(i < data->number_of_philo)
+	{
+		pthread_join(data->ph[i].ts, NULL);
 		i++;
 	}
 }

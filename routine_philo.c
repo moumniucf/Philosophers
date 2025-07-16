@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 11:50:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/16 13:01:04 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/16 18:05:46 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,24 @@ int is_oddph(t_philo *ph)
 //		return (1);
 //	return (0);
 //}
-
+//int ft_is_diad(t_data *data)
+//{
+//	if(data.t)
+//}
 void	*ft_routine_philo(void *arg)
 {
-	int i = 0;
 	t_philo *ph = (t_philo *)arg;
-	while(i < ph->data->number_of_philo)
-	{
-		printf("[%d]\n", ph->id);
-		i++;
-	}
 	if(ph->id % 2 != 0)
 		usleep(1000);
-	printf("llllll\n");
-	//pthread_mutex_lock(data->philo->l_f);
-	//pthread_mutex_lock(data->philo->r_f);
+	else
+	{
+		printf("%d has taken a fork\n", ph->id);
+		pthread_mutex_lock(ph->l_f);
+		pthread_mutex_lock(ph->r_f);
+		printf("%d is eating\n", ph->id);
+		usleep(ph->data->time_toeat);
+		printf("%d is thinking\n", ph->id);
+		usleep(ph->data->time_tothink);
+	}
 	return NULL;
 }
