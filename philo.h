@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 18:30:04 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/17 12:44:09 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/17 15:16:04 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,5 @@ void 	ft_create_thread(t_data *data);
 void 	ft_join_thread(t_data *data);
 void	*ft_routine_philo(void *arg);
 long	ft_get_time(void);
+void 	ft_is_dead(t_philo *ph);
 void 	ft_monitoring(t_philo *d);

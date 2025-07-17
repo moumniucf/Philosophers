@@ -47,6 +47,7 @@ int main(int ac, char **av)
 	if(!data)
 		return (1);
 	ft_arg_in(av, data);
+	//printf("{%d}\n", (ac - 1));
 	if((ac - 1) > 5)
 	{
 		printf("Error\n");
@@ -65,4 +66,5 @@ int main(int ac, char **av)
 	ft_philo_in(data);
 	ft_create_thread(data);
 	ft_join_thread(data);
+	
 }

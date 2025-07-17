@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 11:50:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/17 13:00:44 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/17 18:14:10 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,39 +23,37 @@ int is_oddph(t_philo *ph)
 	return (0);
 }
 
-int is_dead(t_data *da)
+void ft_is_dead(t_philo *ph)
 {
-	if(da->time_toeat > da->time_tosleep)
-		return (1);
-	return (0);
+	ph->last_meal = ft_get_time();
+	if(ph->current_time - ph->last_meal >= ph->data->time_toeat)
+	{
+		ph->data->is_dead = 1;
+	}
 }
-//int ft_is_diad(t_data *data)
-//{
-//	if(data.t)
-//}
+
 void	*ft_routine_philo(void *arg)
 {
 	t_philo *ph = (t_philo *)arg;
 	ph->current_time = ft_get_time();
-	if(ph->current_time - ph->data->time_todie > ph->data->time_toeat)
-	{
-		printf("[%ld]\n", ph->current_time);
-	}
-	//while(is_dead(ph->data) == 0)
+	printf("-->(%lld)\n", ph->last_meal);
+	
+	while(ph->data->is_dead)
 	{
 		if(ph->id % 2 != 0)
 			usleep(1000);
 		else
 		{
-			printf("%d has taken a fork\n", ph->id);
+			printf("%ld %d has taken a fork\n", ft_get_time() - ph->current_time, ph->id);
 			pthread_mutex_lock(ph->l_f);
 			pthread_mutex_lock(ph->r_f);
 			ph->meal_c++;
-			printf("%d is eating\n", ph->id);
+			printf("%ld %d is eating\n", ft_get_time() - ph->current_time, ph->id);
+			ph->last_meal = ft_get_time();
 			//usleep(ph->data->time_toeat);
-			printf("%d is thinking\n", ph->id);
+			printf("%ld %d is thinking\n", ft_get_time() - ph->current_time, ph->id);
 			//usleep(ph->data->time_tothink);
 		}
 	}
-	return NULL;
+	return (NULL);
 }
