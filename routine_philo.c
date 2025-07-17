@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 11:50:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/17 11:00:30 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/17 13:00:44 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ int is_dead(t_data *da)
 void	*ft_routine_philo(void *arg)
 {
 	t_philo *ph = (t_philo *)arg;
+	ph->current_time = ft_get_time();
+	if(ph->current_time - ph->data->time_todie > ph->data->time_toeat)
+	{
+		printf("[%ld]\n", ph->current_time);
+	}
 	//while(is_dead(ph->data) == 0)
 	{
 		if(ph->id % 2 != 0)

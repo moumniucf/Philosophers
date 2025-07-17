@@ -41,10 +41,10 @@ int main(int ac, char **av)
 {
 	int i;
 	i = 1;
-	t_philo *d = malloc(sizeof(t_philo));
+	//t_philo *d = malloc(sizeof(t_philo));
 	//d->data = malloc(sizeof(t_data));
 	t_data *data = malloc(sizeof(t_data));
-	if(!d || !d->data)
+	if(!data)
 		return (1);
 	ft_arg_in(av, data);
 	if((ac - 1) > 5)
