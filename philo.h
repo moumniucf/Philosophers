@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 18:30:04 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/17 15:16:04 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/18 23:28:24 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 
 typedef struct s_data
 {
-	int time_todie;
-	int time_toeat;
-	int time_tosleep;
-	int time_tothink;
+	long long time_todie;
+	long long time_toeat;
+	long long time_tosleep;
+	long long time_tothink;
 	int is_dead;
 	pthread_mutex_t *fork;
 	pthread_mutex_t print;
@@ -39,7 +39,7 @@ typedef struct s_philo
 	int id;
 	int meal_c;
 	long long last_meal;
-	long current_time;
+	long long current_time;
 	pthread_mutex_t *l_f;
 	pthread_mutex_t *r_f;
 	pthread_t		ts;
@@ -55,6 +55,6 @@ void	ft_philo_in(t_data *data);
 void 	ft_create_thread(t_data *data);
 void 	ft_join_thread(t_data *data);
 void	*ft_routine_philo(void *arg);
-long	ft_get_time(void);
+long long	ft_get_time(void);
 void 	ft_is_dead(t_philo *ph);
 void 	ft_monitoring(t_philo *d);
