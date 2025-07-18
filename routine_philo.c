@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 11:50:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/18 23:54:26 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/19 00:28:57 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void ft_is_dead(t_philo *ph)
 void	*ft_routine_philo(void *arg)
 {
 	t_philo *ph = (t_philo *)arg;
-	printf("1|%d|\n", ph->data->time_start);
+	printf("1|%lld|\n", ph->data->time_start);
 	printf("2|%lld|\n", ph->current_time);
 	//ph->data->time_start = ft_get_time();
 	//ft_is_dead(ph);

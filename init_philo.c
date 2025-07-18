@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:43:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/18 23:55:09 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/19 00:27:19 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_arg_in(char **av, t_data *da)
 	(da)->time_todie = ft_atoi(av[2]);
 	(da)->time_toeat = ft_atoi(av[3]);
 	(da)->time_tosleep = ft_atoi(av[4]);
-	da->time_start = ft_get_time();
+	//da->time_start = ft_get_time();
 	if(av[5])
 		(da)->number_of_time_to_eat = ft_atoi(av[5]);
 	else

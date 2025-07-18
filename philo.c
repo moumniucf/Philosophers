@@ -47,6 +47,7 @@ int main(int ac, char **av)
 	if(!data)
 		return (1);
 	ft_arg_in(av, data);
+	data->time_start = ft_get_time();
 	//printf("{%d}\n", (ac - 1));
 	if(ac < 5 || ac > 6)
 	{
