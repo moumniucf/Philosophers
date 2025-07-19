@@ -41,19 +41,11 @@ int main(int ac, char **av)
 {
 	int i;
 	i = 1;
-	//t_philo *d = malloc(sizeof(t_philo));
-	//d->data = malloc(sizeof(t_data));
 	t_data *data = malloc(sizeof(t_data));
-	t_philo *ph = malloc(sizeof(t_philo));
-	if(!data || !ph)
+	if(!data)
 		return (1);
 	ft_arg_in(av, data);
 	data->time_start = ft_get_time();
-	//ph->last_meal = ft_get_time();
-	//printf("(%lld)\n", data->time_start);
-	//printf("(%lld)\n", ft_get_time());
-	//data->is_dead = 0;
-	//printf("{%d}\n", (ac - 1));
 	if(ac < 5 || ac > 6)
 	{
 		printf("Error in args\n");

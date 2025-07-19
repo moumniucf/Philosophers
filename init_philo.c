@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:43:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/19 00:27:19 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/19 22:16:18 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	ft_arg_in(char **av, t_data *da)
 	(da)->time_todie = ft_atoi(av[2]);
 	(da)->time_toeat = ft_atoi(av[3]);
 	(da)->time_tosleep = ft_atoi(av[4]);
-	//da->time_start = ft_get_time();
 	if(av[5])
 		(da)->number_of_time_to_eat = ft_atoi(av[5]);
 	else
@@ -38,12 +37,6 @@ void	ft_fork_in(t_data *data)
 		pthread_mutex_init(&data->fork[i], NULL);
 		i++;
 	}
-}
-void	*print_f(void *x)
-{
-	t_philo * ph = (t_philo *)x;
-	printf("-|%d|-\n", ph->id);
-	return NULL;
 }
 
 void	ft_philo_in(t_data *data)
