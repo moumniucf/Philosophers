@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 15:18:30 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/20 13:46:45 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/20 16:08:23 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,8 @@ void	*ft_monitoring(void *arg)
 		{
 			if(ft_is_dead(&data->ph[i]))
 			{
-				//pthread_mutex_lock(&data->dead);
 				data->is_dead = 1;
 				return (NULL);
-				//pthread_mutex_unlock(&data->dead);
-				//return (printf("%lld %d died\n", (data->ph->current_time - data->ph->data->time_start), data->ph->id), NULL);
 			}
 			i++;
 		}

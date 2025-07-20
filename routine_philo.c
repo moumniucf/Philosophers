@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 11:50:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/20 13:46:56 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/20 16:17:58 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ int ft_is_dead(t_philo *ph)
 	ph->current_time = ft_get_time();
 	if ((ph->current_time - ph->last_meal) >= ph->data->time_todie)
 	{
-		//pthread_mutex_lock(&ph->data->dead);
 		//ph->data->is_dead = 1;
-		//pthread_mutex_unlock(&ph->data->dead);
-		printf("%lld %d died\n", (ph->current_time - ph->data->time_start), ph->id);
 		return (1);
 	}
 	return (0);
@@ -39,7 +36,7 @@ int ft_is_dead(t_philo *ph)
 void	*ft_routine_philo(void *arg)
 {
 	t_philo *ph = (t_philo *)arg;
-	//printf("(%d)\n", ph->data->is_dead);
+	ph->current_time = ft_get_time();
 	if (ph->data->number_of_philo == 1)
 	{
 		pthread_mutex_lock(ph->l_f);
