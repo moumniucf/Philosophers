@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "philo.h"
-pthread_mutex_t g22;
 
 int invalid_nuber(char *s)
 {
@@ -45,7 +44,6 @@ int main(int ac, char **av)
 	if(!data)
 		return (1);
 	ft_arg_in(av, data);
-	data->time_start = ft_get_time();
 	if(ac < 5 || ac > 6)
 	{
 		printf("Error in args\n");
@@ -60,9 +58,11 @@ int main(int ac, char **av)
 		}
 		i++;
 	}
+	data->time_start = ft_get_time();
 	ft_fork_in(data);
 	ft_philo_in(data);
 	ft_create_thread(data);
+	ft_monitoring(data);
 	ft_join_thread(data);
 	
 }

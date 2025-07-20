@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 18:30:04 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/19 22:06:04 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/20 13:45:26 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,3 +60,4 @@ long long	ft_get_time(void);
 int  ft_is_dead(t_philo *ph);
 void	*ft_monitoring(void *arg);
 void	ft_print(t_philo *ph, char *str);
+int 	is_dead2(t_philo *ph, int x);

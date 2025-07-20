@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 11:50:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/19 23:05:12 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/20 13:46:56 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,31 +22,16 @@ int is_oddph(t_philo *ph)
 	}
 	return (0);
 }
-
-//int  ft_is_dead(t_philo *ph)
-//{
-//	ph->current_time = ft_get_time();
-//	if((ph->current_time - ph->last_meal) >= ph->data->time_todie)
-//	{
-//		pthread_mutex_lock(&ph->data->dead);
-//		ph->data->is_dead = 1;
-//		ft_print(ph, "died");
-//		pthread_mutex_unlock(&ph->data->dead);
-//		return (1);
-//	}
-//	return(0);
-//}
-
 int ft_is_dead(t_philo *ph)
 {
 	ph->current_time = ft_get_time();
-	printf("X[(%lld)]\n", (ph->current_time - ph->last_meal));
-	printf("Y[(%lld)]\n", ph->last_meal);
 	if ((ph->current_time - ph->last_meal) >= ph->data->time_todie)
 	{
+		//pthread_mutex_lock(&ph->data->dead);
 		//ph->data->is_dead = 1;
-		return (printf("%lld %d died\n", (ph->current_time - ph->data->time_start), ph->id), 1);
-
+		//pthread_mutex_unlock(&ph->data->dead);
+		printf("%lld %d died\n", (ph->current_time - ph->data->time_start), ph->id);
+		return (1);
 	}
 	return (0);
 }
@@ -54,6 +39,7 @@ int ft_is_dead(t_philo *ph)
 void	*ft_routine_philo(void *arg)
 {
 	t_philo *ph = (t_philo *)arg;
+	//printf("(%d)\n", ph->data->is_dead);
 	if (ph->data->number_of_philo == 1)
 	{
 		pthread_mutex_lock(ph->l_f);
@@ -65,7 +51,7 @@ void	*ft_routine_philo(void *arg)
 	}
 	if(ph->id % 2 != 0)
 		usleep(1000);
-	while(!ft_is_dead(ph))
+	while(1)
 	{
 		pthread_mutex_lock(ph->l_f);
 		printf("%lld %d has taken a fork\n", (ft_get_time() - ph->data->time_start), ph->id);
@@ -80,7 +66,7 @@ void	*ft_routine_philo(void *arg)
 		printf("%lld %d is sleeping\n", (ft_get_time() - ph->data->time_start), ph->id);
 		usleep(ph->data->time_tosleep * 1000);
 		printf("%lld %d is thinking\n", (ft_get_time() - ph->data->time_start), ph->id);
-		ft_is_dead(ph);
+		//ft_is_dead(ph);
 	}
 	return (NULL);
 }

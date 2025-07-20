@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 15:18:30 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/19 22:09:25 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/20 13:46:45 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,33 @@ long long ft_get_time(void)
 void	*ft_monitoring(void *arg)
 {
 	int i;
-	t_philo *ph = (t_philo *)arg;
+	t_data *data = (t_data *)arg;
+	data->ph->current_time = ft_get_time();
 	while(1)
 	{
 		i = 0;
-		while(i < ph->data->number_of_philo)
+		while(i < data->number_of_philo)
 		{
-			if(ft_is_dead(&ph[i]))
+			if(ft_is_dead(&data->ph[i]))
+			{
+				//pthread_mutex_lock(&data->dead);
+				data->is_dead = 1;
 				return (NULL);
+				//pthread_mutex_unlock(&data->dead);
+				//return (printf("%lld %d died\n", (data->ph->current_time - data->ph->data->time_start), data->ph->id), NULL);
+			}
 			i++;
 		}
 		usleep(1000);
 	}
+}
+int is_dead2(t_philo *ph, int x)
+{
+	if(ph->data->is_dead == 1)
+	{
+		printf("&&&&&&&&\n");
+		x = 1;
+		return (1);
+	}
+	return (0);
 }
