@@ -6,15 +6,15 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 15:28:35 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/13 15:31:39 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/20 18:33:16 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*ft_printf()
-{
-	t_data *data;
-	printf("is %d eating", data->philo->id);
-	return NULL;
-}
+//void	*ft_printf()
+//{
+//	t_data *data;
+//	printf("is %d eating", data->philo->id);
+//	return NULL;
+//}

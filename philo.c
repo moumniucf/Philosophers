@@ -12,46 +12,50 @@
 
 #include "philo.h"
 
-int invalid_nuber(char *s)
+int	invalid_nuber(char *s)
 {
-	int i;
+	int	i;
+
 	i = 0;
-	if(s[i] == '+')
+	if (s[i] == '+')
 		i++;
-	if(!s[i])
+	if (!s[i])
 		return (0);
-	while(s[i])
+	while (s[i])
 	{
-		if(!ft_isdigit(s[i]))
+		if (!ft_isdigit(s[i]))
 			return (0);
 		i++;
 	}
 	return (1);
 }
-int arg_parss(t_data *p)
+
+int	arg_parss(t_data *p)
 {
-	if(!p || p->number_of_philo <= 0 || p->time_todie < 0 || p->time_toeat < 0 || p->time_tosleep < 0\
-	|| p->time_tothink < 0)
+	if (!p || p->number_of_philo <= 0 || p->time_todie < 0 || \
+	p->time_toeat < 0 || p->time_tosleep < 0 || p->time_tothink < 0)
 		return (0);
 	return (1);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	int i;
+	t_data	*data;
+	int		i;
+
 	i = 1;
-	t_data *data = malloc(sizeof(t_data));
-	if(!data)
+	data = malloc(sizeof(t_data));
+	if (!data)
 		return (1);
 	ft_arg_in(av, data);
-	if(ac < 5 || ac > 6)
+	if (ac < 5 || ac > 6)
 	{
 		printf("Error in args\n");
 		return (1);
 	}
-	while(i < ac)
+	while (i < ac)
 	{
-		if(!invalid_nuber(av[i]))
+		if (!invalid_nuber(av[i]))
 		{
 			printf("Error\n");
 			return (1);
@@ -64,5 +68,4 @@ int main(int ac, char **av)
 	ft_create_thread(data);
 	ft_monitoring(data);
 	ft_join_thread(data);
-	
 }

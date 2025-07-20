@@ -6,11 +6,26 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 16:18:58 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/06 11:15:31 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/20 18:32:25 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	ft_atoihelp(char *str)
+{
+	int	i;
+	int	x;
+
+	i = 0;
+	x = 1;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			x = x * -1;
+		i++;
+	}
+}
 
 int	ft_atoi(char *str)
 {
@@ -25,12 +40,7 @@ int	ft_atoi(char *str)
 		return (0);
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			x = x * -1;
-		i++;
-	}
+	ft_atoihelp(str);
 	while (str[i] >= '0' && str[i] <= '9' && str[i])
 	{
 		rst = rst * 10 + str[i] - 48;
