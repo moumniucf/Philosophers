@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 15:18:30 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/20 23:34:15 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/22 00:45:43 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,15 @@ void	ft_print(t_philo *ph, char *str)
 	pthread_mutex_unlock(&ph->data->print);
 }
 
-void	*ft_monitoring(void *arg)
+void	*ft_monitoring(t_data *data)
 {
 	int			i;
-	t_data		*data;
 
-	data = (t_data *)arg;
 	data->ph->current_time = ft_get_time();
-	while (1)
+	while (1 && data->number_of_philo != 1)
 	{
 		i = 0;
-		while (i < data->number_of_philo)
+		while (i < data->number_of_philo && data->number_of_philo != 1)
 		{
 			if (ft_is_dead(&data->ph[i]))
 			{
@@ -55,6 +53,6 @@ void	*ft_monitoring(void *arg)
 			}
 			i++;
 		}
-		usleep(1000);
 	}
+	return (NULL);
 }
