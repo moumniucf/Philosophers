@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 11:50:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/22 18:07:32 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/22 18:12:30 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ void	*ft_routine_philo(void *arg)
 	{
 		if (ph->data->is_dead == 1)
 		{
-			break;
+			return (NULL);
+			//break;
 		}
 		else
 		{
@@ -80,9 +81,9 @@ void	*ft_routine_philo(void *arg)
 			ft_print(ph, "is thinking");
 			if(ph->data->number_of_time_to_eat != -1)
 			{
-				if(ph->meal_c >= ph->data->number_of_time_to_eat && ph->data->is_dead == 1)
+				if(ph->meal_c >= ph->data->number_of_time_to_eat)
 				{
-					printf("LLLL\n");
+					//printf("LLLL\n");
 					ph->meal_eat = 1;
 					//break;
 					return (NULL);
