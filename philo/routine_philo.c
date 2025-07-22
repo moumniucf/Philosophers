@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 11:50:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/22 11:34:08 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/22 15:14:37 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,15 @@ int	is_oddph(t_philo *ph)
 
 int	ft_is_dead(t_philo *ph)
 {
-	ph->current_time = ft_get_time();
+	pthread_mutex_lock(&ph->data->time);
 	if (ph->last_meal && (ph->current_time - ph->last_meal) >= ph->data->time_todie)
 	{
+		pthread_mutex_lock(&ph->data->dead);
 		printf("%lld %d died\n", ph->current_time - ph->data->time_start, ph->id);
+		pthread_mutex_unlock(&ph->data->dead);	
 		return (1);
 	}
+	pthread_mutex_unlock(&ph->data->time);
 	return (0);
 }
 
@@ -60,25 +63,29 @@ void	*ft_routine_philo(void *arg)
 		{
 			break;
 		}
-		pthread_mutex_lock(ph->l_f);
-		ft_print(ph, "has taken a fork");
-		pthread_mutex_lock(ph->r_f);
-		ft_print(ph, "has taken a fork");
-		ph->last_meal = ft_get_time();
-		ft_print(ph, "is eating");
-		usleep(ph->data->time_toeat * 1000);
-		ph->meal_c++;
-		pthread_mutex_unlock(ph->l_f);
-		pthread_mutex_unlock(ph->r_f);
-		ft_print(ph, "is sleeping");
-		usleep(ph->data->time_tosleep * 1000);
-		ft_print(ph, "is thinking");
-		if(ph->data->number_of_time_to_eat != -1)
+		else
 		{
-			if(ph->meal_c >= ph->data->number_of_time_to_eat)
+			pthread_mutex_lock(ph->l_f);
+			ft_print(ph, "has taken a fork");
+			pthread_mutex_lock(ph->r_f);
+			ft_print(ph, "has taken a fork");
+			ph->last_meal = ft_get_time();
+			ft_print(ph, "is eating");
+			usleep(ph->data->time_toeat * 1000);
+			ph->meal_c++;
+			pthread_mutex_unlock(ph->l_f);
+			pthread_mutex_unlock(ph->r_f);
+			ft_print(ph, "is sleeping");
+			usleep(ph->data->time_tosleep * 1000);
+			ft_print(ph, "is thinking");
+			if(ph->data->number_of_time_to_eat != -1)
 			{
-				ph->meal_eat = 1;
-				break;
+				if(ph->meal_c >= ph->data->number_of_time_to_eat && ph->data->is_dead == 1)
+				{
+					ph->meal_eat = 1;
+					break;
+					//return (NULL);
+				}
 			}
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 18:30:04 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/22 10:53:09 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/22 15:07:28 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct s_data
 	pthread_mutex_t		dead;
 	pthread_mutex_t		*fork;
 	pthread_mutex_t		print;
+	pthread_mutex_t		meals;
+	pthread_mutex_t		time;
 	long long			time_start;
 	int					number_of_philo;
 	int					number_of_time_to_eat;

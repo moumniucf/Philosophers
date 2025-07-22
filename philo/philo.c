@@ -64,6 +64,7 @@ int	main(int ac, char **av)
 	}
 	pthread_mutex_init(&data->dead, NULL);
 	pthread_mutex_init(&data->print, NULL);
+	pthread_mutex_init(&data->time, NULL);
 	data->time_start = ft_get_time();
 	ft_fork_in(data);
 	ft_philo_in(data);

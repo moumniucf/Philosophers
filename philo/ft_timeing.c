@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 15:18:30 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/22 11:33:38 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/22 15:15:04 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ void	ft_print(t_philo *ph, char *str)
 {
 	pthread_mutex_lock(&ph->data->print);
 	pthread_mutex_lock(&ph->data->dead);
+	pthread_mutex_lock(&ph->data->time);
 	ph->current_time = ft_get_time() - ph->data->time_start;
 	if(ph->data->is_dead == 0)
 	{
 		printf("%lld %d %s\n", ph->current_time, ph->id, str);
 	}
+	pthread_mutex_unlock(&ph->data->time);
 	pthread_mutex_unlock(&ph->data->dead);
 	pthread_mutex_unlock(&ph->data->print);
 }
@@ -38,7 +40,6 @@ void	*ft_monitoring(t_data *data)
 {
 	int			i;
 
-	data->ph->current_time = ft_get_time();
 	while (1 && data->number_of_philo != 1)
 	{
 		i = 0;
@@ -51,10 +52,12 @@ void	*ft_monitoring(t_data *data)
 				pthread_mutex_unlock(&data->dead);
 				return (NULL);
 			}
+			pthread_mutex_lock(&data->dead);
 			if(data->ph->meal_eat == 1)
 			{
 				return (NULL);
 			}
+			pthread_mutex_unlock(&data->dead);
 			i++;
 		}
 		usleep(1000);
