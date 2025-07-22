@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 11:50:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/22 18:12:30 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/22 23:05:17 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int	is_oddph(t_philo *ph)
 
 int	ft_is_dead(t_philo *ph)
 {
-	pthread_mutex_lock(&ph->data->time);
+	//pthread_mutex_lock(&ph->data->time);
+	ph->current_time = ft_get_time();
 	if (ph->last_meal && (ph->current_time - ph->last_meal) >= ph->data->time_todie)
 	{
 		pthread_mutex_lock(&ph->data->dead);
@@ -83,10 +84,9 @@ void	*ft_routine_philo(void *arg)
 			{
 				if(ph->meal_c >= ph->data->number_of_time_to_eat)
 				{
-					//printf("LLLL\n");
 					ph->meal_eat = 1;
-					//break;
-					return (NULL);
+					//return (NULL);
+					exit(0);
 				}
 			}
 		}

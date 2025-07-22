@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 15:18:30 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/22 18:13:38 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/22 21:23:32 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,43 @@ void	ft_print(t_philo *ph, char *str)
 	pthread_mutex_unlock(&ph->data->print);
 }
 
+//void	*ft_monitoring(t_data *data)
+//{
+//	int			i;
+
+//	while (1 && data->number_of_philo != 1)
+//	{
+//		i = 0;
+//		while (i < data->number_of_philo && data->number_of_philo != 1)
+//		{
+//			if (ft_is_dead(&data->ph[i]))
+//			{
+//				pthread_mutex_lock(&data->dead);
+//				data->is_dead = 1;
+//				pthread_mutex_unlock(&data->dead);
+//				return (NULL);
+//			}
+//			pthread_mutex_lock(&data->dead);
+//			if(data->ph->meal_eat == 1)
+//			{
+//				//printf("!!!\n");
+//				return (NULL);
+//			}
+//			pthread_mutex_unlock(&data->dead);
+//			i++;
+//		}
+//		usleep(1000);
+//	}
+//	return (NULL);
+//}
 void	*ft_monitoring(t_data *data)
 {
-	int			i;
+	int	i;
 
 	while (1 && data->number_of_philo != 1)
 	{
 		i = 0;
-		while (i < data->number_of_philo && data->number_of_philo != 1)
+		while (i < data->number_of_philo)
 		{
 			if (ft_is_dead(&data->ph[i]))
 			{
@@ -52,16 +81,10 @@ void	*ft_monitoring(t_data *data)
 				pthread_mutex_unlock(&data->dead);
 				return (NULL);
 			}
-			pthread_mutex_lock(&data->dead);
-			if(data->ph->meal_eat == 1)
-			{
-				//printf("!!!\n");
-				return (NULL);
-			}
-			pthread_mutex_unlock(&data->dead);
 			i++;
 		}
 		usleep(1000);
 	}
 	return (NULL);
 }
+
