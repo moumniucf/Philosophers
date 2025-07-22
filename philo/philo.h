@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 18:30:04 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/21 19:46:50 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/22 10:53:09 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_data
 	long long			time_tothink;
 	int					is_dead;
 	int					one;
+	int					is_finish;
 	pthread_mutex_t		dead;
 	pthread_mutex_t		*fork;
 	pthread_mutex_t		print;
@@ -64,6 +65,5 @@ long long	ft_get_time(void);
 int			ft_is_dead(t_philo *ph);
 void		*ft_monitoring(t_data *data);
 void		ft_print(t_philo *ph, char *str);
-int			is_dead2(t_philo *ph, int x);
 
 #endif

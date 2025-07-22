@@ -6,11 +6,11 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 16:18:58 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/22 09:56:34 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/20 18:32:25 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_bonus.h"
+#include "philo.h"
 
 void	ft_atoihelp(char *str)
 {

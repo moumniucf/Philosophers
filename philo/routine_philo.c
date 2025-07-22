@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 11:50:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/22 00:46:12 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/22 11:34:08 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	is_oddph(t_philo *ph)
 int	ft_is_dead(t_philo *ph)
 {
 	ph->current_time = ft_get_time();
-	if (ph->last_meal && (ph->current_time - ph->last_meal) >= ph->data->time_todie && ph->meal_eat == 1)
+	if (ph->last_meal && (ph->current_time - ph->last_meal) >= ph->data->time_todie)
 	{
 		printf("%lld %d died\n", ph->current_time - ph->data->time_start, ph->id);
 		return (1);
@@ -54,7 +54,7 @@ void	*ft_routine_philo(void *arg)
 	}
 	if (ph->id % 2 != 0)
 		usleep(1000);
-	while (1)
+	while (ph->data->is_dead == 0)
 	{
 		if (ph->data->is_dead == 1)
 		{

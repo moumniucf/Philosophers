@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 15:18:30 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/22 00:45:43 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/22 11:33:38 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,13 @@ void	*ft_monitoring(t_data *data)
 				pthread_mutex_unlock(&data->dead);
 				return (NULL);
 			}
+			if(data->ph->meal_eat == 1)
+			{
+				return (NULL);
+			}
 			i++;
 		}
+		usleep(1000);
 	}
 	return (NULL);
 }

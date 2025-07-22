@@ -1,18 +1,13 @@
-NAME = philo
+NAME = philo_bonus
 
 CC = cc
 
 CFLAGS = -Wall -Wextra -Werror #-fsanitize=thread -g3
 
-HEADER = philo.h
+HEADER = philo_bonus.h
 
-SRC =	philo.c\
-		ft_isalpha.c\
-		ft_isdigit.c\
-		init_philo.c\
-		ft_atoi.c\
-		routine_philo.c\
-		ft_timeing.c\
+SRC =	ft_initphilo_bonus.c\
+		ft_atoi_bonus.c\
 
 OSRC = $(SRC:%.c=%.o)
 
