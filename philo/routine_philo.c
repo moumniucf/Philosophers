@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 11:50:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/22 17:02:45 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/22 18:07:32 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,10 @@ void	*ft_routine_philo(void *arg)
 			{
 				if(ph->meal_c >= ph->data->number_of_time_to_eat && ph->data->is_dead == 1)
 				{
+					printf("LLLL\n");
 					ph->meal_eat = 1;
-					break;
-					//return (NULL);
+					//break;
+					return (NULL);
 				}
 			}
 		}
