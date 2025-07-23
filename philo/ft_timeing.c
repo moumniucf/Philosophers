@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 15:18:30 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/23 22:44:35 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/23 23:20:11 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	*ft_monitoring(t_data *data)
 			}
 			i++;
 		}
-		usleep(1000);
+		usleep(500);
 	}
 	return (NULL);
 }
