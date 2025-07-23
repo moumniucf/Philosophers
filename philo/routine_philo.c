@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 11:50:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/22 23:05:17 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/23 22:32:24 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,15 @@ int	is_oddph(t_philo *ph)
 
 int	ft_is_dead(t_philo *ph)
 {
-	//pthread_mutex_lock(&ph->data->time);
 	ph->current_time = ft_get_time();
 	if (ph->last_meal && (ph->current_time - ph->last_meal) >= ph->data->time_todie)
 	{
-		pthread_mutex_lock(&ph->data->dead);
-		printf("%lld %d died\n", ph->current_time - ph->data->time_start, ph->id);
-		pthread_mutex_unlock(&ph->data->dead);	
+		//pthread_mutex_lock(&ph->data->dead);
+		printf("%lld\t%d\tdied\n", ph->current_time - ph->data->time_start, ph->id);
+		//pthread_mutex_unlock(&ph->data->dead);
 		return (1);
 	}
-	pthread_mutex_unlock(&ph->data->time);
+	//pthread_mutex_unlock(&ph->data->time);
 	return (0);
 }
 
@@ -46,7 +45,6 @@ void	*ft_routine_philo(void *arg)
 	t_philo	*ph;
 
 	ph = (t_philo *)arg;
-	ph->current_time = ft_get_time();
 	if (ph->data->number_of_philo == 1)
 	{
 		pthread_mutex_lock(ph->l_f);
@@ -62,8 +60,7 @@ void	*ft_routine_philo(void *arg)
 	{
 		if (ph->data->is_dead == 1)
 		{
-			return (NULL);
-			//break;
+			break;
 		}
 		else
 		{
@@ -71,8 +68,8 @@ void	*ft_routine_philo(void *arg)
 			ft_print(ph, "has taken a fork");
 			pthread_mutex_lock(ph->r_f);
 			ft_print(ph, "has taken a fork");
-			ph->last_meal = ft_get_time();
 			ft_print(ph, "is eating");
+			ph->last_meal = ft_get_time();
 			usleep(ph->data->time_toeat * 1000);
 			ph->meal_c++;
 			pthread_mutex_unlock(ph->l_f);
@@ -85,8 +82,7 @@ void	*ft_routine_philo(void *arg)
 				if(ph->meal_c >= ph->data->number_of_time_to_eat)
 				{
 					ph->meal_eat = 1;
-					//return (NULL);
-					exit(0);
+					return (NULL);
 				}
 			}
 		}

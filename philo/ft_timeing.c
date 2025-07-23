@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 15:18:30 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/22 21:23:32 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/23 22:44:35 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,42 +29,13 @@ void	ft_print(t_philo *ph, char *str)
 	ph->current_time = ft_get_time() - ph->data->time_start;
 	if(ph->data->is_dead == 0)
 	{
-		printf("%lld %d %s\n", ph->current_time, ph->id, str);
+		printf("%lld\t%d\t%s\n", ph->current_time, ph->id, str);
 	}
 	pthread_mutex_unlock(&ph->data->time);
 	pthread_mutex_unlock(&ph->data->dead);
 	pthread_mutex_unlock(&ph->data->print);
 }
 
-//void	*ft_monitoring(t_data *data)
-//{
-//	int			i;
-
-//	while (1 && data->number_of_philo != 1)
-//	{
-//		i = 0;
-//		while (i < data->number_of_philo && data->number_of_philo != 1)
-//		{
-//			if (ft_is_dead(&data->ph[i]))
-//			{
-//				pthread_mutex_lock(&data->dead);
-//				data->is_dead = 1;
-//				pthread_mutex_unlock(&data->dead);
-//				return (NULL);
-//			}
-//			pthread_mutex_lock(&data->dead);
-//			if(data->ph->meal_eat == 1)
-//			{
-//				//printf("!!!\n");
-//				return (NULL);
-//			}
-//			pthread_mutex_unlock(&data->dead);
-//			i++;
-//		}
-//		usleep(1000);
-//	}
-//	return (NULL);
-//}
 void	*ft_monitoring(t_data *data)
 {
 	int	i;
@@ -80,6 +51,13 @@ void	*ft_monitoring(t_data *data)
 				data->is_dead = 1;
 				pthread_mutex_unlock(&data->dead);
 				return (NULL);
+			}
+			if(data->number_of_time_to_eat != -1)
+			{
+				if(data->ph[i].meal_c == data->number_of_time_to_eat)
+				{
+					return (NULL);
+				}
 			}
 			i++;
 		}
