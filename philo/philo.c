@@ -54,7 +54,8 @@ int	main(int ac, char **av)
 {
 	t_data	*data;
 	int		i;
-	atexit(ft_lk);
+	int		j;
+	//atexit(ft_lk);
 	i = 1;
 	data = malloc(sizeof(t_data));
 	if (!data)
@@ -86,4 +87,17 @@ int	main(int ac, char **av)
 	ft_create_thread(data);
 	ft_monitoring(data);
 	ft_join_thread(data);
+	j = 0;
+	while(j < data->number_of_philo)
+	{
+		pthread_mutex_destroy(&data->fork[j]);
+		j++;
+	}
+	pthread_mutex_destroy(&data->dead);
+	pthread_mutex_destroy(&data->print);
+	pthread_mutex_destroy(&data->time);
+	pthread_mutex_destroy(&data->meals);
+	free(data->fork);
+	free(data->ph);
+	free(data);
 }
