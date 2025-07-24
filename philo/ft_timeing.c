@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 15:18:30 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/23 23:20:11 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/24 17:31:17 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,16 @@ long long	ft_get_time(void)
 	x = ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 	return (x);
 }
+
 void	ft_print(t_philo *ph, char *str)
 {
 	pthread_mutex_lock(&ph->data->print);
 	pthread_mutex_lock(&ph->data->dead);
 	pthread_mutex_lock(&ph->data->time);
-	ph->current_time = ft_get_time() - ph->data->time_start;
-	if(ph->data->is_dead == 0)
+	if (ph->data->is_dead == 0)
 	{
-		printf("%lld\t%d\t%s\n", ph->current_time, ph->id, str);
+		printf("%lld\t%d\t%s\n", \
+		(ft_get_time() - ph->data->time_start), ph->id, str);
 	}
 	pthread_mutex_unlock(&ph->data->time);
 	pthread_mutex_unlock(&ph->data->dead);
@@ -39,10 +40,12 @@ void	ft_print(t_philo *ph, char *str)
 void	*ft_monitoring(t_data *data)
 {
 	int	i;
+	int	eats;
 
 	while (1 && data->number_of_philo != 1)
 	{
 		i = 0;
+		data->ph->current_time = ft_get_time();
 		while (i < data->number_of_philo)
 		{
 			if (ft_is_dead(&data->ph[i]))
@@ -52,9 +55,12 @@ void	*ft_monitoring(t_data *data)
 				pthread_mutex_unlock(&data->dead);
 				return (NULL);
 			}
-			if(data->number_of_time_to_eat != -1)
+			if (data->number_of_time_to_eat != -1)
 			{
-				if(data->ph[i].meal_c == data->number_of_time_to_eat)
+				pthread_mutex_lock(&data->meals);
+				eats = data->ph[i].meal_c;
+				pthread_mutex_unlock(&data->meals);
+				if (eats == data->number_of_time_to_eat)
 				{
 					return (NULL);
 				}
@@ -65,4 +71,3 @@ void	*ft_monitoring(t_data *data)
 	}
 	return (NULL);
 }
-

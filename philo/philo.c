@@ -30,6 +30,13 @@ int	invalid_nuber(char *s)
 	return (1);
 }
 
+int	parss_2(t_data *da)
+{
+	if (da->time_todie < 60 || da->time_toeat < 60 || da->time_tosleep < 60)
+		return (1);
+	return (0);
+}
+
 int	arg_parss(t_data *p)
 {
 	if (!p || p->number_of_philo <= 0 || p->time_todie < 0 || \
@@ -37,24 +44,25 @@ int	arg_parss(t_data *p)
 		return (0);
 	return (1);
 }
-void ft_lk()
+
+void	ft_lk(void)
 {
 	system("leaks philo");
 }
+
 int	main(int ac, char **av)
 {
-	//atexit(ft_lk);
 	t_data	*data;
 	int		i;
-
+	atexit(ft_lk);
 	i = 1;
 	data = malloc(sizeof(t_data));
 	if (!data)
 		return (1);
 	ft_arg_in(av, data);
-	if (ac < 5 || ac > 6)
+	if (ac < 5 || ac > 6 || data->number_of_philo > 200 || parss_2(data))
 	{
-		printf("Error in args\n");
+		printf("Error\n");
 		free(data);
 		return (1);
 	}
@@ -71,6 +79,7 @@ int	main(int ac, char **av)
 	pthread_mutex_init(&data->dead, NULL);
 	pthread_mutex_init(&data->print, NULL);
 	pthread_mutex_init(&data->time, NULL);
+	pthread_mutex_init(&data->meals, NULL);
 	data->time_start = ft_get_time();
 	ft_fork_in(data);
 	ft_philo_in(data);
