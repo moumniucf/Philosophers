@@ -54,8 +54,7 @@ int	main(int ac, char **av)
 {
 	t_data	*data;
 	int		i;
-	int		j;
-	//atexit(ft_lk);
+
 	i = 1;
 	data = malloc(sizeof(t_data));
 	if (!data)
@@ -77,27 +76,5 @@ int	main(int ac, char **av)
 		}
 		i++;
 	}
-	pthread_mutex_init(&data->dead, NULL);
-	pthread_mutex_init(&data->print, NULL);
-	pthread_mutex_init(&data->time, NULL);
-	pthread_mutex_init(&data->meals, NULL);
-	data->time_start = ft_get_time();
-	ft_fork_in(data);
-	ft_philo_in(data);
-	ft_create_thread(data);
-	ft_monitoring(data);
-	ft_join_thread(data);
-	j = 0;
-	while(j < data->number_of_philo)
-	{
-		pthread_mutex_destroy(&data->fork[j]);
-		j++;
-	}
-	pthread_mutex_destroy(&data->dead);
-	pthread_mutex_destroy(&data->print);
-	pthread_mutex_destroy(&data->time);
-	pthread_mutex_destroy(&data->meals);
-	free(data->fork);
-	free(data->ph);
-	free(data);
+	ft_help_main(data);
 }

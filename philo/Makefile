@@ -2,7 +2,7 @@ NAME = philo
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=thread -g3
+CFLAGS = -Wall -Wextra -Werror -fsanitize=leak -g3
 
 HEADER = philo.h
 
@@ -13,6 +13,7 @@ SRC =	philo.c\
 		ft_atoi.c\
 		routine_philo.c\
 		ft_timeing.c\
+		ft_print.c\
 
 OSRC = $(SRC:%.c=%.o)
 

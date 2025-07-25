@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:43:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/24 12:23:26 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/25 19:07:29 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ void	ft_join_thread(t_data *data)
 	i = 0;
 	while (i < data->number_of_philo)
 	{
-		pthread_join(data->ph[i].ts, NULL);
+		if (pthread_join(data->ph[i].ts, NULL) != 0)
+			printf("Error\n");
 		i++;
 	}
 }
