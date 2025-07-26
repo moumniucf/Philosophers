@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 09:52:42 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/22 09:55:12 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/26 23:59:36 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <limits.h>
 # include <pthread.h>
+# include <semaphore.h>
 # include <sys/wait.h>
 # include <sys/time.h>
 
@@ -52,5 +53,8 @@ typedef struct s_philo
 }	t_philo;
 
 int	ft_atoi(char *str);
+int	ft_isalpha(int c);
+int	ft_isdigit(int c);
+void	ft_arg_in(char **av, t_data *da);
 
 #endif

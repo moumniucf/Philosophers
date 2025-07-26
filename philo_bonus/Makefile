@@ -8,7 +8,10 @@ HEADER = philo_bonus.h
 
 SRC =	ft_initphilo_bonus.c\
 		ft_atoi_bonus.c\
-
+		ft_isdigit_bonus.c\
+		ft_isalpha_bonus.c\
+		main_bonus.c\
+		
 OSRC = $(SRC:%.c=%.o)
 
 all : $(NAME)

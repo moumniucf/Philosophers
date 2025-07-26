@@ -45,11 +45,6 @@ int	arg_parss(t_data *p)
 	return (1);
 }
 
-void	ft_lk(void)
-{
-	system("leaks philo");
-}
-
 int	main(int ac, char **av)
 {
 	t_data	*data;
@@ -68,7 +63,7 @@ int	main(int ac, char **av)
 	}
 	while (i < ac)
 	{
-		if (!invalid_nuber(av[i]))
+		if (invalid_nuber(av[i]) == 0)
 		{
 			printf("Error\n");
 			free(data);
