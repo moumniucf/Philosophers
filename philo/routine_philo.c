@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 11:50:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/25 19:19:37 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/27 11:32:26 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,12 @@ void	*ft_routine_philo(void *arg)
 	{
 		pthread_mutex_lock(ph->l_f);
 		ft_print(ph, "has taken a fork");
-		usleep(ph->data->time_todie * 1000);
+		ft_help_time(ph->data->time_todie);
 		ft_print(ph, "died");
-		free(ph);
 		return (NULL);
 	}
 	if (ph->id % 2 != 0)
-		usleep(1000);
+		ft_help_time(50);
 	ft_routine_help(ph);
 	return (NULL);
 }

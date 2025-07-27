@@ -2,7 +2,7 @@ NAME = philo
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=leak -g3
+CFLAGS = -Wall -Wextra -Werror
 
 HEADER = philo.h
 

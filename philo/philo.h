@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 18:30:04 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/25 19:09:27 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/27 10:58:11 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@ void		*ft_monitoring(t_data *data);
 void		ft_print(t_philo *ph, char *str);
 void		*ft_routine_help(t_philo *ph);
 void		ft_help_main(t_data *data);
+void		ft_help_time(long long time);
 
 #endif

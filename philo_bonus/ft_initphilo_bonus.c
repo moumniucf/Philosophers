@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 09:54:21 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/27 00:08:44 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/27 11:07:33 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_seminit(t_data *da)
 {
 	sem_unlink("/fork");
 	sem_unlink("/print");
-	sem_open("fork", O_CREAT , 0664, da->number_of_philo);
+	sem_open("/fork", O_CREAT , 0664, da->number_of_philo);
 	//int i = 0;
 	//while(i < da->number_of_philo)
 	//{
