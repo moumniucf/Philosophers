@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 09:54:21 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/27 18:34:10 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/27 23:51:12 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,37 @@ void	ft_seminit(t_data *da)
 		return;
 }
 
-void ft_init_fork(t_data *da)
+void	ft_init_philo(t_data *data)
+{
+	int	i;
+
+	data->ph = malloc(sizeof(t_philo) * data->number_of_philo);
+	if (!data->ph)
+		return ;
+	i = 0;
+	while (i < data->number_of_philo)
+	{
+		data->ph[i].id = i + 1;
+		data->ph[i].meal_c = 0;
+		data->ph[i].last_meal = 0;
+		data->ph[i].data = data;
+		i++;
+	}
+}
+
+void	ft_init_pfork(t_data *data)
 {
 	int i = 0;
-	da->pid = fork();
-	while(i < da->number_of_philo)
+	data->pid = malloc(sizeof(pid_t) * data->number_of_philo);
+	if(!data->pid)
+		return ;
+	while(i < data->number_of_philo)
 	{
-		//printf(".....[%d]...|{%d}|\n", da->pid, i);
+		data->pid[i] = fork();
+		if(data->pid[i] == 0)
+		{
+			ft_routine_philo(data);
+		}
 		i++;
 	}
 }

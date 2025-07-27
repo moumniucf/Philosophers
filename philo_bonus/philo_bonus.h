@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 09:52:42 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/27 18:34:02 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/27 23:52:31 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <semaphore.h>
 # include <sys/wait.h>
 # include <sys/time.h>
+# include <fcntl.h>
 
 typedef struct s_data
 {
@@ -35,7 +36,7 @@ typedef struct s_data
 	sem_t				*print;
 	//pthread_mutex_t		print;
 	long long			time_start;
-	pid_t				pid;
+	pid_t				*pid;
 	int					number_of_philo;
 	int					number_of_time_to_eat;
 	struct s_philo		*ph;
@@ -60,6 +61,8 @@ int	ft_isdigit(int c);
 void	ft_arg_in(char **av, t_data *da);
 void	ft_print(t_philo *ph, char *str);
 void	ft_help_time(long long time);
-void	ft_init_fork(t_data *da);
-
+void	ft_init_philo(t_data *da);
+void	ft_seminit(t_data *da);
+void	*ft_routine_philo(void *arg);
+void	ft_init_pfork(t_data *data);
 #endif

@@ -55,7 +55,7 @@ int	main(int ac, char **av)
 	if (!data)
 		return (1);
 	ft_arg_in(av, data);
-	if (ac < 5 || ac > 6 || data->number_of_philo > 200 || parss_2(data))
+	if (ac < 5 || ac > 6 || data->number_of_philo > 200 || parss_2(data) || data->number_of_time_to_eat == 0)
 	{
 		printf("Error\n");
 		free(data);
