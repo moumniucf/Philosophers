@@ -11,6 +11,10 @@ SRC =	ft_initphilo_bonus.c\
 		ft_isdigit_bonus.c\
 		ft_isalpha_bonus.c\
 		main_bonus.c\
+		ft_monitor_bonus.c\
+		ft_philo_bonus.c\
+		ft_print_bonus.c\
+
 		
 OSRC = $(SRC:%.c=%.o)
 

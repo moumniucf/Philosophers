@@ -1,49 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_timeing.c                                       :+:      :+:    :+:   */
+/*   ft_monitor_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/14 15:18:30 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/28 22:17:06 by youmoumn         ###   ########.fr       */
+/*   Created: 2025/07/28 15:18:13 by youmoumn          #+#    #+#             */
+/*   Updated: 2025/07/29 00:33:10 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
-long long	ft_get_time(void)
-{
-	struct timeval	time;
-	long long		x;
-
-	gettimeofday(&time, NULL);
-	x = ((time.tv_sec * 1000) + (time.tv_usec / 1000));
-	return (x);
-}
-
-void	ft_print(t_philo *ph, char *str)
-{
-	pthread_mutex_lock(&ph->data->print);
-	pthread_mutex_lock(&ph->data->dead);
-	pthread_mutex_lock(&ph->data->time);
-	if (ph->data->is_dead == 0)
-	{
-		printf("%lld\t%d\t%s\n", \
-		(ft_get_time() - ph->data->time_start), ph->id, str);
-	}
-	pthread_mutex_unlock(&ph->data->time);
-	pthread_mutex_unlock(&ph->data->dead);
-	pthread_mutex_unlock(&ph->data->print);
-}
 
 int	ft_checkdead(t_data *data, int i)
 {
 	if (ft_is_dead(&data->ph[i]))
 	{
-		pthread_mutex_lock(&data->dead);
 		data->is_dead = 1;
-		pthread_mutex_unlock(&data->dead);
 		return (1);
 	}
 	return (0);
@@ -55,9 +29,7 @@ int	ft_checkmeal(t_data *data, int i)
 
 	if (data->number_of_time_to_eat != -1)
 	{
-		pthread_mutex_lock(&data->meals);
 		eats = data->ph[i].meal_c;
-		pthread_mutex_unlock(&data->meals);
 		if (eats == data->number_of_time_to_eat)
 		{
 			return (1);
@@ -65,7 +37,6 @@ int	ft_checkmeal(t_data *data, int i)
 	}
 	return (0);
 }
-
 void	*ft_monitoring(t_data *data)
 {
 	int	i;
@@ -85,4 +56,11 @@ void	*ft_monitoring(t_data *data)
 		ft_help_time(50);
 	}
 	return (NULL);
+}
+
+
+void	ft_close_sem(t_data *data)
+{
+	sem_close(data->print);
+	sem_close(data->fork);
 }

@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 09:54:21 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/27 23:51:12 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/29 00:22:13 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ void	ft_init_pfork(t_data *data)
 		data->pid[i] = fork();
 		if(data->pid[i] == 0)
 		{
-			ft_routine_philo(data);
+			ft_routine_philo(&data->ph[i]);
+			exit(0);
 		}
 		i++;
 	}
