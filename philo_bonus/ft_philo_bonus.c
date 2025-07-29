@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:23:58 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/29 18:39:00 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/29 20:58:17 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,35 +57,22 @@ void	ft_help_time(long long time)
 }
 void	*ft_routine_help(t_philo *ph)
 {
-	int	deads;
-	long long	last_m;
-
 	while (1)
 	{
-		deads = ph->data->is_dead;
-		if (deads == 1)
+		ft_help2(ph);
+		ph->current_time = ft_get_time();
+		if (ph->last_meal && (ph->current_time - ph->last_meal) >= ph->data->time_todie)
 		{
-			break ;
+			printf("%lld\t%d\tdied\n", \
+			(ph->current_time - ph->data->time_start), ph->id);
+			exit(1);
 		}
-		else
+		if (ph->data->number_of_time_to_eat != -1)
 		{
-			ft_help2(ph);
-
-			last_m = ph->last_meal;
-			ph->current_time = ft_get_time();
-			if (last_m && (ph->current_time - last_m) >= ph->data->time_todie)
+			if (ph->meal_c >= ph->data->number_of_time_to_eat)
 			{
-				printf("%lld\t%d\tdied\n", \
-				(ph->current_time - ph->data->time_start), ph->id);
-				exit(1);
-			}
-			if (ph->data->number_of_time_to_eat != -1)
-			{
-				if (ph->meal_c >= ph->data->number_of_time_to_eat)
-				{
-					ph->meal_eat = 1;
-					exit(0);
-				}
+				ph->meal_eat = 1;
+				exit(0);
 			}
 		}
 	}
@@ -98,13 +85,10 @@ void	*ft_routine_philo(t_philo	*ph)
 		ft_print(ph, "has taken a fork");
 		ft_help_time(ph->data->time_todie);
 		ft_print(ph, "died");
-		//return (NULL);
 		exit(1);
 	}
 	if (ph->id % 2 != 0)
 		ft_help_time(50);
-	//pthread_create(&ph->ts, NULL, &ft_monitoring, (void *)ph);
 	ft_routine_help(ph);
-	//pthread_join(ph->ts, NULL);
 	return (NULL);
 }

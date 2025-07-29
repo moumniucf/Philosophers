@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 15:18:13 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/29 18:38:13 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/29 21:26:08 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,26 @@ int	ft_checkmeal(t_data *data, int i)
 	}
 	return (0);
 }
-void	*ft_monitoring(void *arg)
-{
-	t_data *data = (t_data *)arg;
-	int	i;
-	while (1 && data->number_of_philo != 1)
-	{
-		i = 0;
-		data->ph->current_time = ft_get_time();
-		while (i < data->number_of_philo)
-		{
-			if (ft_checkdead(data, i) == 1)
-				return (NULL);
-			if (ft_checkmeal(data, i) == 1)
-				return (NULL);
-			i++;
-		}
-		ft_help_time(50);
-	}
-	return (NULL);
-}
+//void	*ft_monitoring(void *arg)
+//{
+//	t_data *data = (t_data *)arg;
+//	int	i;
+//	while (1 && data->number_of_philo != 1)
+//	{
+//		i = 0;
+//		data->ph->current_time = ft_get_time();
+//		while (i < data->number_of_philo)
+//		{
+//			if (ft_checkdead(data, i) == 1)
+//				return (NULL);
+//			if (ft_checkmeal(data, i) == 1)
+//				return (NULL);
+//			i++;
+//		}
+//		ft_help_time(50);
+//	}
+//	return (NULL);
+//}
 
 
 void	ft_close_sem(t_data *data)
@@ -65,13 +65,32 @@ void	ft_close_sem(t_data *data)
 	sem_close(data->print);
 	sem_close(data->fork);
 }
-
+void ft_kill_all(t_data *data)
+{
+	int i = 0;
+	while(i < data->number_of_philo)
+	{
+		kill(data->pid[i], SIGKILL);
+		i++;
+	}
+}
 void	ft_waitp(t_data *da)
 {
+	int status;
+	//pid_t pids;
+	
 	int i = 0;
 	while(i < da->number_of_philo)
 	{
-		waitpid(da->pid[i], NULL, 0);
+		waitpid(-1, &status, 0);
+		//printf("|%d|\n", pids);
+		//if(pids == -1)
+		//	break;
+		if(WEXITSTATUS(status))
+		{
+			//printf("is died : {%d}\n", da->ph->id);
+			ft_kill_all(da);
+		}
 		i++;
 	}
 }
