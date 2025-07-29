@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 09:54:21 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/29 00:22:13 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/29 17:32:12 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ void	ft_arg_in(char **av, t_data *da)
 void	ft_seminit(t_data *da)
 {
 	sem_unlink("/fork");
-	da->fork =  sem_open("/fork", O_CREAT , 0664, da->number_of_philo);
-	if(da->fork == SEM_FAILED)
-		return;
 	sem_unlink("/print");
+	sem_unlink("/dead");
+	da->fork =  sem_open("/fork", O_CREAT , 0664, da->number_of_philo);
+	da->print =  sem_open("/dead", O_CREAT , 0664, 1);
 	da->print =  sem_open("/print", O_CREAT , 0664, 1);
-	if(da->print == SEM_FAILED)
+	if(da->fork == SEM_FAILED || da->print == SEM_FAILED || da->dead == SEM_FAILED)
 		return;
 }
 
@@ -73,3 +73,17 @@ void	ft_init_pfork(t_data *data)
 		i++;
 	}
 }
+//void	ft_help(t_data *data)
+//{
+//	int i;
+//	while(1)
+//	{
+//		i = 0;
+//		while(i < data->number_of_philo)
+//		{
+//			printf("[|{%lld}|]\n", data->ph[i].last_meal);
+//			i++;
+//			exit(0);
+//		}
+//	}
+//}

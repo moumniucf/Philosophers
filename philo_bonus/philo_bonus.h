@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 09:52:42 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/28 22:51:04 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/29 13:24:20 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,9 @@ typedef struct s_data
 	long long			time_tothink;
 	int					is_dead;
 	int					one;
-	//pthread_mutex_t		dead;
+	sem_t				*dead;
 	sem_t				*fork;
 	sem_t				*print;
-	//pthread_mutex_t		print;
 	long long			time_start;
 	pid_t				*pid;
 	int					number_of_philo;
@@ -50,26 +49,28 @@ typedef struct s_philo
 	int					meal_eat;
 	long long			last_meal;
 	long long			current_time;
-	//pthread_mutex_t		*l_f;
-	//pthread_mutex_t		*r_f;
 	pthread_t			ts;
 	t_data				*data;
 }	t_philo;
 
-int	ft_atoi(char *str);
-int	ft_isalpha(int c);
-int	ft_isdigit(int c);
-void	ft_arg_in(char **av, t_data *da);
-void	ft_print(t_philo *ph, char *str);
-void	ft_help_time(long long time);
-void	ft_init_philo(t_data *da);
-void	ft_seminit(t_data *da);
-void	*ft_routine_philo(t_philo *ph);
-void	ft_init_pfork(t_data *data);
-void	*ft_routine_help(t_philo *ph);
+int			ft_atoi(char *str);
+int			ft_isalpha(int c);
+int			ft_isdigit(int c);
+void		ft_arg_in(char **av, t_data *da);
+void		ft_print(t_philo *ph, char *str);
+void		ft_help_time(long long time);
+void		ft_init_philo(t_data *da);
+void		ft_seminit(t_data *da);
+void		*ft_routine_philo(t_philo *ph);
+void		ft_init_pfork(t_data *data);
+void		*ft_routine_help(t_philo *ph);
 long long	ft_get_time(void);
-int		ft_is_dead(t_philo *ph);
-void	*ft_monitoring(t_data *data);
-void	ft_print(t_philo *ph, char *str);
-void	ft_close_sem(t_data *data);
+int			ft_is_dead(t_philo *ph);
+//void		*ft_monitoring(t_data *data);
+void	*ft_monitoring(void *arg);
+void		ft_print(t_philo *ph, char *str);
+void		ft_close_sem(t_data *data);
+void		ft_waitp(t_data *da);
+void		ft_help(t_data *data);
+
 #endif

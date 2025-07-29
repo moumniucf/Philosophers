@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 15:18:13 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/29 00:33:10 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/29 17:34:04 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	ft_checkdead(t_data *data, int i)
 {
 	if (ft_is_dead(&data->ph[i]))
 	{
+		printf("{{%d}}\n", data->number_of_philo);
 		data->is_dead = 1;
 		return (1);
 	}
@@ -37,10 +38,10 @@ int	ft_checkmeal(t_data *data, int i)
 	}
 	return (0);
 }
-void	*ft_monitoring(t_data *data)
+void	*ft_monitoring(void *arg)
 {
+	t_data *data = (t_data *)arg;
 	int	i;
-
 	while (1 && data->number_of_philo != 1)
 	{
 		i = 0;
@@ -63,4 +64,14 @@ void	ft_close_sem(t_data *data)
 {
 	sem_close(data->print);
 	sem_close(data->fork);
+}
+
+void	ft_waitp(t_data *da)
+{
+	int i = 0;
+	while(i < da->number_of_philo)
+	{
+		waitpid(da->pid[i], NULL, 0);
+		i++;
+	}
 }
