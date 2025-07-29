@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:23:58 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/29 17:50:43 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/29 18:39:00 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	ft_help_time(long long time)
 void	*ft_routine_help(t_philo *ph)
 {
 	int	deads;
+	long long	last_m;
 
 	while (1)
 	{
@@ -69,7 +70,6 @@ void	*ft_routine_help(t_philo *ph)
 		else
 		{
 			ft_help2(ph);
-			long long	last_m;
 
 			last_m = ph->last_meal;
 			ph->current_time = ft_get_time();
@@ -84,12 +84,11 @@ void	*ft_routine_help(t_philo *ph)
 				if (ph->meal_c >= ph->data->number_of_time_to_eat)
 				{
 					ph->meal_eat = 1;
-					return (NULL);
+					exit(0);
 				}
 			}
 		}
 	}
-	//pthread_join(ph->ts, NULL);
 	return (NULL);
 }
 void	*ft_routine_philo(t_philo	*ph)
@@ -104,8 +103,8 @@ void	*ft_routine_philo(t_philo	*ph)
 	}
 	if (ph->id % 2 != 0)
 		ft_help_time(50);
-	pthread_create(&ph->ts, NULL, &ft_monitoring, (void *)ph);
+	//pthread_create(&ph->ts, NULL, &ft_monitoring, (void *)ph);
 	ft_routine_help(ph);
-	pthread_join(ph->ts, NULL);
+	//pthread_join(ph->ts, NULL);
 	return (NULL);
 }
