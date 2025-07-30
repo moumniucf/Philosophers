@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:23:58 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/30 13:07:37 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/30 14:07:33 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,13 @@ void	*ft_routine_help(t_philo *ph)
 {
 	while (1)
 	{
-		ph->current_time = ft_get_time();
-		ft_help2(ph);
-		if (ph->last_meal && (ph->current_time - ph->last_meal) >= ph->data->time_todie)
+		if (ph->last_meal && (ft_get_time() - ph->last_meal) >= ph->data->time_todie)
 		{
 			printf("%lld\t%d\tdied\n", \
-			(ph->current_time - ph->data->time_start), ph->id);
+			(ft_get_time() - ph->data->time_start), ph->id);
 			exit(1);
 		}
+		ft_help2(ph);
 		if (ph->data->number_of_time_to_eat != -1)
 		{
 			if (ph->meal_c >= ph->data->number_of_time_to_eat)
@@ -72,6 +71,7 @@ void	*ft_routine_help(t_philo *ph)
 				exit(0);
 			}
 		}
+		ft_help_time(100);
 	}
 	return (NULL);
 }
