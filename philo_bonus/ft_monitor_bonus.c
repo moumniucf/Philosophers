@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 15:18:13 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/30 12:52:23 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/30 16:06:27 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void	ft_waitp(t_data *da)
 		//|| WEXITSTATUS(status) == 0
 		if(WEXITSTATUS(status) == 1)
 		{
-			printf("LLLLLL\n");
 			ft_kill_all(da);
 		}
 		i++;

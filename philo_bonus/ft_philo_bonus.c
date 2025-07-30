@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:23:58 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/30 14:07:33 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/30 16:12:55 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,22 @@ void	*ft_routine_help(t_philo *ph)
 {
 	while (1)
 	{
+		//ft_help2(ph);
+		ft_print(ph, "has taken a fork");
+		ft_print(ph, "has taken a fork");
+		ft_print(ph, "is eating");
+		ph->last_meal = ft_get_time();
+		ph->meal_c++;
+		ft_help_time(ph->data->time_toeat);
+		ft_print(ph, "is sleeping");
+		ft_help_time(ph->data->time_tosleep);
+		ft_print(ph, "is thinking");
 		if (ph->last_meal && (ft_get_time() - ph->last_meal) >= ph->data->time_todie)
 		{
 			printf("%lld\t%d\tdied\n", \
 			(ft_get_time() - ph->data->time_start), ph->id);
 			exit(1);
 		}
-		ft_help2(ph);
 		if (ph->data->number_of_time_to_eat != -1)
 		{
 			if (ph->meal_c >= ph->data->number_of_time_to_eat)
@@ -71,15 +80,14 @@ void	*ft_routine_help(t_philo *ph)
 				exit(0);
 			}
 		}
-		ft_help_time(100);
 	}
+	//ft_help_time(50);
 	return (NULL);
 }
 void	*ft_routine_philo(t_philo	*ph)
 {
 	if (ph->data->number_of_philo == 1)
 	{
-		printf("1\n");
 		ft_print(ph, "has taken a fork");
 		ft_help_time(ph->data->time_todie);
 		ft_print(ph, "died");
