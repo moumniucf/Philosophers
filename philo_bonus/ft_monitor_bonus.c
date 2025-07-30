@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 15:18:13 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/30 16:06:27 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/30 17:47:54 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,26 @@ int	ft_checkmeal(t_data *data, int i)
 	}
 	return (0);
 }
-//void	*ft_monitoring(void *arg)
-//{
-//	t_data *data = (t_data *)arg;
-//	int	i;
-//	while (1 && data->number_of_philo != 1)
-//	{
-//		i = 0;
-//		data->ph->current_time = ft_get_time();
-//		while (i < data->number_of_philo)
-//		{
-//			if (ft_checkdead(data, i) == 1)
-//				return (NULL);
-//			if (ft_checkmeal(data, i) == 1)
-//				return (NULL);
-//			i++;
-//		}
-//		ft_help_time(50);
-//	}
-//	return (NULL);
-//}
+void	*ft_monitoring(void *arg)
+{
+	t_data *data = (t_data *)arg;
+	int	i;
+	while (1 && data->number_of_philo != 1)
+	{
+		i = 0;
+		data->ph->current_time = ft_get_time();
+		while (i < data->number_of_philo)
+		{
+			if (ft_checkdead(data, i) == 1)
+				return (NULL);
+			if (ft_checkmeal(data, i) == 1)
+				return (NULL);
+			i++;
+		}
+		ft_help_time(50);
+	}
+	return (NULL);
+}
 
 
 void	ft_close_sem(t_data *data)

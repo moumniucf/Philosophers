@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 09:54:21 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/30 12:57:43 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/30 17:45:52 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	ft_init_philo(t_data *data)
 	if (!data->ph)
 		return ;
 	i = 0;
+	//data->ph->current_time = ft_get_time();
 	while (i < data->number_of_philo)
 	{
 		data->ph[i].id = i + 1;
