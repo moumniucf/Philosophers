@@ -72,4 +72,5 @@ int	main(int ac, char **av)
 		i++;
 	}
 	ft_help_main(data);
+	return (0);
 }

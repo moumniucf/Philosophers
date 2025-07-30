@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 09:54:21 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/29 17:32:12 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/30 12:57:43 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,3 @@ void	ft_init_pfork(t_data *data)
 		i++;
 	}
 }
-//void	ft_help(t_data *data)
-//{
-//	int i;
-//	while(1)
-//	{
-//		i = 0;
-//		while(i < data->number_of_philo)
-//		{
-//			printf("[|{%lld}|]\n", data->ph[i].last_meal);
-//			i++;
-//			exit(0);
-//		}
-//	}
-//}

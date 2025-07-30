@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 15:18:13 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/29 21:26:08 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/30 12:52:23 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,18 +77,16 @@ void ft_kill_all(t_data *data)
 void	ft_waitp(t_data *da)
 {
 	int status;
-	//pid_t pids;
 	
 	int i = 0;
+	status  = 0;
 	while(i < da->number_of_philo)
 	{
 		waitpid(-1, &status, 0);
-		//printf("|%d|\n", pids);
-		//if(pids == -1)
-		//	break;
-		if(WEXITSTATUS(status))
+		//|| WEXITSTATUS(status) == 0
+		if(WEXITSTATUS(status) == 1)
 		{
-			//printf("is died : {%d}\n", da->ph->id);
+			printf("LLLLLL\n");
 			ft_kill_all(da);
 		}
 		i++;

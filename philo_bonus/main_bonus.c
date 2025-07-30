@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 18:09:19 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/29 20:58:41 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/30 12:49:39 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,5 @@ int	main(int ac, char **av)
 	ft_init_pfork(data);
 	ft_waitp(data);
 	ft_close_sem(data);
+	return (0);
 }

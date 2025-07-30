@@ -6,25 +6,11 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:23:58 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/29 20:58:17 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/30 13:07:37 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
-
-void	ft_help2(t_philo *ph)
-{
-	ft_print(ph, "has taken a fork");
-	ft_print(ph, "has taken a fork");
-	ft_print(ph, "is eating");
-	ph->last_meal = ft_get_time();
-	ph->meal_c++;
-	ft_help_time(ph->data->time_toeat);
-	ft_print(ph, "is sleeping");
-	ft_help_time(ph->data->time_tosleep);
-	ft_print(ph, "is thinking");
-}
-
 
 int	ft_is_dead(t_philo *ph)
 {
@@ -55,12 +41,24 @@ void	ft_help_time(long long time)
 		usleep(50);
 	}
 }
+void	ft_help2(t_philo *ph)
+{
+	ft_print(ph, "has taken a fork");
+	ft_print(ph, "has taken a fork");
+	ft_print(ph, "is eating");
+	ph->last_meal = ft_get_time();
+	ph->meal_c++;
+	ft_help_time(ph->data->time_toeat);
+	ft_print(ph, "is sleeping");
+	ft_help_time(ph->data->time_tosleep);
+	ft_print(ph, "is thinking");
+}
 void	*ft_routine_help(t_philo *ph)
 {
 	while (1)
 	{
-		ft_help2(ph);
 		ph->current_time = ft_get_time();
+		ft_help2(ph);
 		if (ph->last_meal && (ph->current_time - ph->last_meal) >= ph->data->time_todie)
 		{
 			printf("%lld\t%d\tdied\n", \
@@ -71,7 +69,6 @@ void	*ft_routine_help(t_philo *ph)
 		{
 			if (ph->meal_c >= ph->data->number_of_time_to_eat)
 			{
-				ph->meal_eat = 1;
 				exit(0);
 			}
 		}
@@ -82,6 +79,7 @@ void	*ft_routine_philo(t_philo	*ph)
 {
 	if (ph->data->number_of_philo == 1)
 	{
+		printf("1\n");
 		ft_print(ph, "has taken a fork");
 		ft_help_time(ph->data->time_todie);
 		ft_print(ph, "died");
