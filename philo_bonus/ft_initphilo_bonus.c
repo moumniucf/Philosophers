@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 09:54:21 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/30 17:45:52 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/31 01:00:16 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	ft_init_philo(t_data *data)
 	if (!data->ph)
 		return ;
 	i = 0;
-	//data->ph->current_time = ft_get_time();
 	while (i < data->number_of_philo)
 	{
 		data->ph[i].id = i + 1;
@@ -68,8 +67,9 @@ void	ft_init_pfork(t_data *data)
 		data->pid[i] = fork();
 		if(data->pid[i] == 0)
 		{
+			//pthread_create(&data->ph[i].ts, NULL, &ft_monitoring, data);
 			ft_routine_philo(&data->ph[i]);
-			exit(0);
+			//pthread_join(data->ph->ts, NULL);
 		}
 		i++;
 	}

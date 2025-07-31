@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 09:52:42 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/29 13:24:20 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/31 00:28:14 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,4 @@ void	*ft_monitoring(void *arg);
 void		ft_print(t_philo *ph, char *str);
 void		ft_close_sem(t_data *data);
 void		ft_waitp(t_data *da);
-void		ft_help(t_data *data);
-
 #endif

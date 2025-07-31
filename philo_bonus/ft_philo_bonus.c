@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:23:58 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/30 17:49:16 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/31 01:00:31 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,6 @@ void	ft_help_time(long long time)
 	}
 }
 
-void ft_eating(t_philo *ph)
-{
-	ft_print(ph, "is eating");
-	ph->last_meal = ft_get_time();
-	ph->meal_c++;
-}
 void	ft_help2(t_philo *ph)
 {
 	ft_print(ph, "has taken a fork");
@@ -55,7 +49,6 @@ void	ft_help2(t_philo *ph)
 	ft_print(ph, "is eating");
 	ph->last_meal = ft_get_time();
 	ph->meal_c++;
-	//ft_eating(ph);
 	ft_help_time(ph->data->time_toeat);
 	ft_print(ph, "is sleeping");
 	ft_help_time(ph->data->time_tosleep);
@@ -67,9 +60,6 @@ void	*ft_routine_help(t_philo *ph)
 	while (1)
 	{
 		ft_help2(ph);
-		printf("*****>|%lld|\n", ph->data->time_todie);
-		printf("----->|%lld|\n", ph->last_meal);
-		printf("+++++>|%lld|\n", ft_get_time());
 		if (ph->last_meal && (ft_get_time() - ph->last_meal) >= ph->data->time_todie)
 		{
 			printf("%lld\t%d\tdied\n", \
@@ -84,7 +74,6 @@ void	*ft_routine_help(t_philo *ph)
 			}
 		}
 	}
-	ft_help_time(50);
 	return (NULL);
 }
 void	*ft_routine_philo(t_philo	*ph)

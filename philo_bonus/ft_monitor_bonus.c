@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 15:18:13 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/30 17:47:54 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/31 01:11:11 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ void	ft_waitp(t_data *da)
 	while(i < da->number_of_philo)
 	{
 		waitpid(-1, &status, 0);
-		//|| WEXITSTATUS(status) == 0
 		if(WEXITSTATUS(status) == 1)
 		{
 			ft_kill_all(da);
