@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 09:54:21 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/31 01:00:16 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/01 00:03:44 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,26 +31,30 @@ void	ft_seminit(t_data *da)
 	sem_unlink("/fork");
 	sem_unlink("/print");
 	sem_unlink("/dead");
+	sem_unlink("/meal");
 	da->fork =  sem_open("/fork", O_CREAT , 0664, da->number_of_philo);
 	da->print =  sem_open("/dead", O_CREAT , 0664, 1);
 	da->print =  sem_open("/print", O_CREAT , 0664, 1);
-	if(da->fork == SEM_FAILED || da->print == SEM_FAILED || da->dead == SEM_FAILED)
+	da->meal =  sem_open("/print", O_CREAT , 0664, 1);
+	if(da->fork == SEM_FAILED || da->print == SEM_FAILED || da->dead == SEM_FAILED || da->meal == SEM_FAILED)
 		return;
 }
 
 void	ft_init_philo(t_data *data)
 {
 	int	i;
+	long long time;
 
 	data->ph = malloc(sizeof(t_philo) * data->number_of_philo);
 	if (!data->ph)
 		return ;
 	i = 0;
+	time = ft_get_time();
 	while (i < data->number_of_philo)
 	{
 		data->ph[i].id = i + 1;
 		data->ph[i].meal_c = 0;
-		data->ph[i].last_meal = 0;
+		data->ph[i].last_meal = time;
 		data->ph[i].data = data;
 		i++;
 	}
@@ -67,9 +71,7 @@ void	ft_init_pfork(t_data *data)
 		data->pid[i] = fork();
 		if(data->pid[i] == 0)
 		{
-			//pthread_create(&data->ph[i].ts, NULL, &ft_monitoring, data);
 			ft_routine_philo(&data->ph[i]);
-			//pthread_join(data->ph->ts, NULL);
 		}
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 18:09:19 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/31 01:28:54 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/31 21:43:27 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ int	main(int ac, char **av)
 	data->time_start = ft_get_time();
 	ft_init_pfork(data);
 	ft_waitp(data);
-	//printf("==>{%lld}\n", data->ph->last_meal);
-	ft_close_sem(data);
+	//ft_close_sem(data);
 	return (0);
 }
