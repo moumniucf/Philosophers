@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:43:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/27 12:19:04 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/07/31 20:31:38 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,20 @@ void	ft_arg_in(char **av, t_data *da)
 		da->number_of_time_to_eat = -1;
 }
 
-void	ft_fork_in(t_data *data)
-{
-	int	i;
+//void	ft_fork_in(t_data *data)
+//{
+//	int	i;
 
-	data->fork = malloc(sizeof(pthread_mutex_t) * data->number_of_philo);
-	if (!data->fork)
-		return ;
-	i = 0;
-	while (i < data->number_of_philo)
-	{
-		pthread_mutex_init(&data->fork[i], NULL);
-		i++;
-	}
-}
+//	data->fork = malloc(sizeof(pthread_mutex_t) * data->number_of_philo);
+//	if (!data->fork)
+//		return ;
+//	i = 0;
+//	while (i < data->number_of_philo)
+//	{
+//		pthread_mutex_init(&data->fork[i], NULL);
+//		i++;
+//	}
+//}
 
 void	ft_philo_in(t_data *data)
 {
