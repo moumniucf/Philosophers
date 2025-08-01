@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 18:09:19 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/01 18:10:35 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/01 21:17:43 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,37 +50,50 @@ void	ft_lk(void)
 	system("leaks philo");
 }
 
-int	main(int ac, char **av)
+int	ft_check_args(int ac, char **av, t_data *data)
 {
-	t_data	*data;
-	int		i;
+	int	i;
 
-	i = 1;
-	data = malloc(sizeof(t_data));
-	if (!data)
-		return (1);
-	ft_arg_in(av, data);
 	if (ac < 5 || ac > 6 || data->number_of_philo > 200 || parss_2(data))
-	{
-		printf("Error\n");
-		free(data);
-		return (1);
-	}
+		return (0);
+	i = 1;
 	while (i < ac)
 	{
 		if (!invalid_nuber(av[i]))
-		{
-			printf("Error\n");
-			free(data);
-			return (1);
-		}
+			return (0);
 		i++;
 	}
+	return (1);
+}
+
+int	ft_run_simulation(t_data *data)
+{
 	ft_init_philo(data);
 	ft_seminit(data);
 	data->time_start = ft_get_time();
 	ft_init_pfork(data);
 	ft_waitp(data);
 	ft_close_sem(data);
+	return (0);
+}
+
+int	main(int ac, char **av)
+{
+	t_data	*data;
+
+	data = malloc(sizeof(t_data));
+	if (!data)
+		return (1);
+	ft_arg_in(av, data);
+	if (!ft_check_args(ac, av, data))
+	{
+		printf("Error\n");
+		free(data);
+		return (1);
+	}
+	ft_run_simulation(data);
+	free(data->pid);
+	free(data->ph);
+	free(data);
 	return (0);
 }

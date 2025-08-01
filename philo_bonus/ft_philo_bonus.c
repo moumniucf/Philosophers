@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:23:58 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/01 19:25:08 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/01 20:05:30 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,8 @@ void	*ft_monitoring(void *arg)
 		meals = ph->last_meal;
 		if (meals && (ft_get_time() - meals) >= ph->data->time_todie)
 		{
-			//sem_wait(ph->data->dead);
 			printf("%lld\t%d\tdied\n",\
 			(ft_get_time() - ph->data->time_start), ph->id);
-			//sem_post(ph->data->dead);
 			exit(1);
 		}
 		ft_help_time(50);
