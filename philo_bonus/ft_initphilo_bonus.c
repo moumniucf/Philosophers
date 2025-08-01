@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 09:54:21 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/01 00:03:44 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/01 17:45:41 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,21 @@ void	ft_seminit(t_data *da)
 	sem_unlink("/print");
 	sem_unlink("/dead");
 	sem_unlink("/meal");
-	da->fork =  sem_open("/fork", O_CREAT , 0664, da->number_of_philo);
-	da->print =  sem_open("/dead", O_CREAT , 0664, 1);
-	da->print =  sem_open("/print", O_CREAT , 0664, 1);
-	da->meal =  sem_open("/print", O_CREAT , 0664, 1);
-	if(da->fork == SEM_FAILED || da->print == SEM_FAILED || da->dead == SEM_FAILED || da->meal == SEM_FAILED)
-		return;
+	sem_unlink("/time");
+	da->fork = sem_open("/fork", O_CREAT, 0664, da->number_of_philo);
+	da->dead = sem_open("/dead", O_CREAT, 0664, 1);
+	da->print = sem_open("/print", O_CREAT, 0664, 1);
+	da->meal = sem_open("/meal", O_CREAT, 0664, 1);
+	da->time = sem_open("/time", O_CREAT, 0664, 1);
+	if (da->fork == SEM_FAILED || da->print == SEM_FAILED ||\
+			da->dead == SEM_FAILED || da->meal == SEM_FAILED || da->time == SEM_FAILED)
+		return ;
 }
 
 void	ft_init_philo(t_data *data)
 {
-	int	i;
-	long long time;
+	int			i;
+	long long	time;
 
 	data->ph = malloc(sizeof(t_philo) * data->number_of_philo);
 	if (!data->ph)
@@ -62,14 +65,16 @@ void	ft_init_philo(t_data *data)
 
 void	ft_init_pfork(t_data *data)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	data->pid = malloc(sizeof(pid_t) * data->number_of_philo);
-	if(!data->pid)
+	if (!data->pid)
 		return ;
-	while(i < data->number_of_philo)
+	while (i < data->number_of_philo)
 	{
 		data->pid[i] = fork();
-		if(data->pid[i] == 0)
+		if (data->pid[i] == 0)
 		{
 			ft_routine_philo(&data->ph[i]);
 		}

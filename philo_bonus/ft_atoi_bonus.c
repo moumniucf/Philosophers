@@ -6,26 +6,24 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 09:59:02 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/22 09:59:10 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/01 15:32:39 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "philo_bonus.h"
 
-void	ft_atoihelp(char *str)
+int	ft_sign(char *str, int *i)
 {
-	int	i;
-	int	x;
+	int	sign;
 
-	i = 0;
-	x = 1;
-	if (str[i] == '-' || str[i] == '+')
+	sign = 1;
+	if (str[*i] == '-' || str[*i] == '+')
 	{
-		if (str[i] == '-')
-			x = x * -1;
-		i++;
+		if (str[*i] == '-')
+			sign = -1;
+		(*i)++;
 	}
+	return (sign);
 }
 
 int	ft_atoi(char *str)
@@ -41,7 +39,7 @@ int	ft_atoi(char *str)
 		return (0);
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
-	ft_atoihelp(str);
+	x = ft_sign(str, &i);
 	while (str[i] >= '0' && str[i] <= '9' && str[i])
 	{
 		rst = rst * 10 + str[i] - 48;
