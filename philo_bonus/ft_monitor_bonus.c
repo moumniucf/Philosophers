@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 15:18:13 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/02 13:25:13 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/02 15:08:17 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_close_sem(t_data *data)
 	sem_close(data->fork);
 	sem_close(data->dead);
 	sem_close(data->meal);
+	sem_close(data->lock_meal);
 }
 
 void	ft_kill_all(t_data *data)

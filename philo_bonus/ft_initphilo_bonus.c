@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 09:54:21 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/02 14:10:50 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/02 15:07:16 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,16 @@ void	ft_seminit(t_data *da)
 	sem_unlink("/dead");
 	sem_unlink("/meal");
 	sem_unlink("/time");
+	sem_unlink("/lock_meal");
 	da->fork = sem_open("/fork", O_CREAT, 0664, da->number_of_philo);
 	da->dead = sem_open("/dead", O_CREAT, 0664, 1);
 	da->print = sem_open("/print", O_CREAT, 0664, 1);
 	da->meal = sem_open("/meal", O_CREAT, 0664, 1);
 	da->time = sem_open("/time", O_CREAT, 0664, 1);
+	da->lock_meal = sem_open("/lock_meal", O_CREAT, 0664, 1);
 	if (da->fork == SEM_FAILED || da->print == SEM_FAILED || \
 			da->dead == SEM_FAILED || da->meal == SEM_FAILED || \
-			da->time == SEM_FAILED)
+			da->time == SEM_FAILED || da->lock_meal == SEM_FAILED)
 		return ;
 }
 

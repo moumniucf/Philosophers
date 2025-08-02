@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 09:52:42 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/02 13:12:57 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/02 15:06:39 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_data
 	sem_t				*print;
 	sem_t				*meal;
 	sem_t				*time;
+	sem_t				*lock_meal;
 	long long			time_start;
 	pid_t				*pid;
 	int					number_of_philo;

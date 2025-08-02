@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:23:58 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/02 14:12:27 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/02 15:11:49 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,7 @@ void	ft_help_time(long long time)
 		usleep(500);
 	}
 }
-void ft_helper(t_data *data)
-{
-	int i = 0;
-	while(i < data->number_of_philo)
-	{
-		if(data->pid[i] == 0)
-			kill(data->pid[i], SIGINT);
-		i++;
-	}
-}
+
 void	*ft_monitoring(void *arg)
 {
 	t_philo		*ph;
@@ -46,18 +37,14 @@ void	*ft_monitoring(void *arg)
 	ph = (t_philo *)arg;
 	while (1)
 	{
-		sem_wait(ph->data->time);
+		sem_wait(ph->data->lock_meal);
 		meals = ph->last_meal;
-		sem_post(ph->data->time);
+		sem_post(ph->data->lock_meal);
 		if (meals && (ft_get_time() - meals) >= ph->data->time_todie)
 		{
 			sem_wait(ph->data->print);
 			printf("%lld\t%d\tdied\n", \
 			(ft_get_time() - ph->data->time_start), ph->id);
-			sem_post(ph->data->print);
-			printf("[%d]||[%d]\n", ph->id, *ph->data->pid);
-			ft_helper(ph->data);
-			printf("LLLLL\n");
 			exit(1);
 		}
 		ft_help_time(50);
@@ -74,9 +61,9 @@ void	ft_help2(t_philo *ph)
 	sem_wait(ph->data->fork);
 	ft_print(ph, "has taken a fork");
 	ft_print(ph, "is eating");
-	sem_wait(ph->data->time);
+	sem_wait(ph->data->lock_meal);
 	ph->last_meal = ft_get_time();
-	sem_post(ph->data->time);
+	sem_post(ph->data->lock_meal);
 	sem_wait(ph->data->meal);
 	ph->meal_c++;
 	sem_post(ph->data->meal);
