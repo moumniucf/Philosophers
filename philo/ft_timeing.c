@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 15:18:30 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/30 16:44:30 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/02 20:50:16 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	ft_checkmeal(t_data *data, int i)
 		pthread_mutex_unlock(&data->meals);
 		if (eats == data->number_of_time_to_eat)
 		{
+			data->ph->meal_eat = 1;
 			return (1);
 		}
 	}
