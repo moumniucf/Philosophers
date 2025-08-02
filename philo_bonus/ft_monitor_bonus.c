@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 15:18:13 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/01 15:37:08 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/02 13:25:13 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 void	ft_close_sem(t_data *data)
 {
 	sem_close(data->print);
+	sem_close(data->time);
 	sem_close(data->fork);
 	sem_close(data->dead);
+	sem_close(data->meal);
 }
 
 void	ft_kill_all(t_data *data)
@@ -26,7 +28,7 @@ void	ft_kill_all(t_data *data)
 	i = 0;
 	while (i < data->number_of_philo)
 	{
-		kill(data->pid[i], SIGKILL);
+		kill(data->pid[i], SIGINT);
 		i++;
 	}
 }

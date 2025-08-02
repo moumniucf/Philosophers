@@ -6,12 +6,12 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 09:52:42 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/01 15:55:20 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/02 13:12:57 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef PHILO_BONUS_H
-#define PHILO_BONUS_H
+#ifndef PHILO_BONUS_H
+# define PHILO_BONUS_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -68,9 +68,10 @@ void		ft_init_pfork(t_data *data);
 void		*ft_routine_help(t_philo *ph);
 long long	ft_get_time(void);
 int			ft_is_dead(t_philo *ph);
-//void		*ft_monitoring(t_data *data);
-void	*ft_monitoring(void *arg);
+void		*ft_monitoring(void *arg);
 void		ft_print(t_philo *ph, char *str);
 void		ft_close_sem(t_data *data);
 void		ft_waitp(t_data *da);
+int			ft_run_simulation(t_data *data);
+void		ft_kill_all(t_data *data);
 #endif

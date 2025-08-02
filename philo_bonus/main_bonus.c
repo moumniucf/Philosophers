@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 18:09:19 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/01 21:17:43 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/02 13:12:59 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,6 @@ int	arg_parss(t_data *p)
 	return (1);
 }
 
-void	ft_lk(void)
-{
-	system("leaks philo");
-}
-
 int	ft_check_args(int ac, char **av, t_data *data)
 {
 	int	i;
@@ -64,17 +59,6 @@ int	ft_check_args(int ac, char **av, t_data *data)
 		i++;
 	}
 	return (1);
-}
-
-int	ft_run_simulation(t_data *data)
-{
-	ft_init_philo(data);
-	ft_seminit(data);
-	data->time_start = ft_get_time();
-	ft_init_pfork(data);
-	ft_waitp(data);
-	ft_close_sem(data);
-	return (0);
 }
 
 int	main(int ac, char **av)

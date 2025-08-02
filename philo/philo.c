@@ -45,6 +45,13 @@ int	arg_parss(t_data *p)
 	return (1);
 }
 
+void	ft_help_norm(t_data *data)
+{
+	printf("Error\n");
+	free(data);
+	exit(1);
+}
+
 int	main(int ac, char **av)
 {
 	t_data	*data;
@@ -55,19 +62,17 @@ int	main(int ac, char **av)
 	if (!data)
 		return (1);
 	ft_arg_in(av, data);
-	if (ac < 5 || ac > 6 || data->number_of_philo > 200 || parss_2(data) || data->number_of_time_to_eat == 0)
+	if (ac < 5 || ac > 6 || data->number_of_philo > 200 || \
+	parss_2(data) || data->number_of_time_to_eat == 0 || \
+	data->number_of_philo == 0)
 	{
-		printf("Error\n");
-		free(data);
-		return (1);
+		ft_help_norm(data);
 	}
 	while (i < ac)
 	{
 		if (invalid_nuber(av[i]) == 0)
 		{
-			printf("Error\n");
-			free(data);
-			return (1);
+			ft_help_norm(data);
 		}
 		i++;
 	}

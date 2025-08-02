@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 09:54:21 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/01 17:45:41 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/02 13:26:43 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ void	ft_seminit(t_data *da)
 	da->print = sem_open("/print", O_CREAT, 0664, 1);
 	da->meal = sem_open("/meal", O_CREAT, 0664, 1);
 	da->time = sem_open("/time", O_CREAT, 0664, 1);
-	if (da->fork == SEM_FAILED || da->print == SEM_FAILED ||\
-			da->dead == SEM_FAILED || da->meal == SEM_FAILED || da->time == SEM_FAILED)
+	if (da->fork == SEM_FAILED || da->print == SEM_FAILED || \
+			da->dead == SEM_FAILED || da->meal == SEM_FAILED || \
+			da->time == SEM_FAILED)
 		return ;
 }
 
@@ -77,6 +78,7 @@ void	ft_init_pfork(t_data *data)
 		if (data->pid[i] == 0)
 		{
 			ft_routine_philo(&data->ph[i]);
+			exit(0);
 		}
 		i++;
 	}
