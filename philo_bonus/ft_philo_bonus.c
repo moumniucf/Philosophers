@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:23:58 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/02 15:11:49 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/02 17:31:54 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,9 @@ void	*ft_routine_philo(t_philo	*ph)
 		ft_print(ph, "died");
 		exit(1);
 	}
-	pthread_create(&ph->ts, NULL, ft_monitoring, ph);
+	if(pthread_create(&ph->ts, NULL, ft_monitoring, ph) != 0)
+		return NULL;
+	sem_post(ph->data->lock_meal);
 	if (ph->id % 2 != 0)
 		ft_help_time(100);
 	ft_routine_help(ph);
