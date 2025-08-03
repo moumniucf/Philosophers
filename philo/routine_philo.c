@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 11:50:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/29 10:06:56 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/03 13:11:04 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,19 @@ int	ft_is_dead(t_philo *ph)
 {
 	long long	last_m;
 
-	pthread_mutex_lock(&ph->data->time);
+	if (pthread_mutex_lock(&ph->data->time) != 0)
+		return (0);
 	last_m = ph->last_meal;
-	pthread_mutex_unlock(&ph->data->time);
+	if (pthread_mutex_unlock(&ph->data->time) != 0)
+		return (0);
 	if (last_m && (ph->current_time - last_m) >= ph->data->time_todie)
 	{
-		pthread_mutex_lock(&ph->data->dead);
+		if (pthread_mutex_lock(&ph->data->dead) != 0)
+			return (0);
 		printf("%lld\t%d\tdied\n", \
 		(ph->current_time - ph->data->time_start), ph->id);
-		pthread_mutex_unlock(&ph->data->dead);
+		if (pthread_mutex_unlock(&ph->data->dead) != 0)
+			return (0);
 		return (1);
 	}
 	return (0);
@@ -37,7 +41,8 @@ void	*ft_routine_philo(void *arg)
 	ph = (t_philo *)arg;
 	if (ph->data->number_of_philo == 1)
 	{
-		pthread_mutex_lock(ph->l_f);
+		if (pthread_mutex_lock(ph->l_f) != 0)
+			return (NULL);
 		ft_print(ph, "has taken a fork");
 		ft_help_time(ph->data->time_todie);
 		ft_print(ph, "died");

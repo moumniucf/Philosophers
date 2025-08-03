@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 15:18:30 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/02 20:50:16 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/03 13:08:20 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,42 @@ long long	ft_get_time(void)
 	struct timeval	time;
 	long long		x;
 
-	gettimeofday(&time, NULL);
+	if (gettimeofday(&time, NULL) != 0)
+		printf("ERROR IN TIME\n");
 	x = ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 	return (x);
 }
 
 void	ft_print(t_philo *ph, char *str)
 {
-	pthread_mutex_lock(&ph->data->print);
-	pthread_mutex_lock(&ph->data->dead);
-	pthread_mutex_lock(&ph->data->time);
+	if (pthread_mutex_lock(&ph->data->print) != 0)
+		return ;
+	if (pthread_mutex_lock(&ph->data->dead) != 0)
+		return ;
+	if (pthread_mutex_lock(&ph->data->time) != 0)
+		return ;
 	if (ph->data->is_dead == 0)
 	{
 		printf("%lld\t%d\t%s\n", \
 		(ft_get_time() - ph->data->time_start), ph->id, str);
 	}
-	pthread_mutex_unlock(&ph->data->time);
-	pthread_mutex_unlock(&ph->data->dead);
-	pthread_mutex_unlock(&ph->data->print);
+	if (pthread_mutex_unlock(&ph->data->time) != 0)
+		return ;
+	if (pthread_mutex_unlock(&ph->data->dead) != 0)
+		return ;
+	if (pthread_mutex_unlock(&ph->data->print) != 0)
+		return ;
 }
 
 int	ft_checkdead(t_data *data, int i)
 {
 	if (ft_is_dead(&data->ph[i]))
 	{
-		pthread_mutex_lock(&data->dead);
+		if (pthread_mutex_lock(&data->dead) != 0)
+			return (0);
 		data->is_dead = 1;
-		pthread_mutex_unlock(&data->dead);
+		if (pthread_mutex_unlock(&data->dead) != 0)
+			return (0);
 		return (1);
 	}
 	return (0);

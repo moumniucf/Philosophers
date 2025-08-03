@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 15:28:35 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/03 00:21:16 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/03 13:08:52 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ void	cleanup(t_data *data)
 	j = 0;
 	while (j < data->number_of_philo)
 	{
-		pthread_mutex_destroy(&data->fork[j]);
+		if (pthread_mutex_destroy(&data->fork[j]) != 0)
+			return ;
 		j++;
 	}
 	if (pthread_mutex_destroy(&data->dead) != 0)
@@ -106,10 +107,14 @@ void	ft_help_main(t_data *data)
 {
 	char	*monit;
 
-	pthread_mutex_init(&data->dead, NULL);
-	pthread_mutex_init(&data->print, NULL);
-	pthread_mutex_init(&data->time, NULL);
-	pthread_mutex_init(&data->meals, NULL);
+	if (pthread_mutex_init(&data->dead, NULL) != 0)
+		return ;
+	if (pthread_mutex_init(&data->print, NULL) != 0)
+		return ;
+	if (pthread_mutex_init(&data->time, NULL) != 0)
+		return ;
+	if (pthread_mutex_init(&data->meals, NULL))
+		return ;
 	data->time_start = ft_get_time();
 	ft_fork_in(data);
 	ft_philo_in(data);

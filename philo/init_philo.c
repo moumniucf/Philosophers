@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:43:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/02 17:11:02 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/03 13:01:30 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	ft_fork_in(t_data *data)
 	i = 0;
 	while (i < data->number_of_philo)
 	{
-		pthread_mutex_init(&data->fork[i], NULL);
+		if (pthread_mutex_init(&data->fork[i], NULL) != 0)
+			return ;
 		i++;
 	}
 }
@@ -68,7 +69,8 @@ void	ft_create_thread(t_data *data)
 	i = 0;
 	while (i < data->number_of_philo)
 	{
-		if (pthread_create(&data->ph[i].ts, NULL, &ft_routine_philo, &data->ph[i]) != 0)
+		if (pthread_create(&data->ph[i].ts, NULL, \
+		&ft_routine_philo, &data->ph[i]) != 0)
 			return ;
 		i++;
 	}
@@ -82,7 +84,7 @@ void	ft_join_thread(t_data *data)
 	while (i < data->number_of_philo)
 	{
 		if (pthread_join(data->ph[i].ts, NULL) != 0)
-			printf("Error\n");
+			return ;
 		i++;
 	}
 }
