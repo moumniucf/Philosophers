@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 18:30:04 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/07/28 22:16:56 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/03 16:37:53 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ typedef struct s_data
 	long long			time_tosleep;
 	long long			time_tothink;
 	int					is_dead;
-	int					one;
-	int					is_finish;
 	pthread_mutex_t		dead;
 	pthread_mutex_t		*fork;
 	pthread_mutex_t		print;
