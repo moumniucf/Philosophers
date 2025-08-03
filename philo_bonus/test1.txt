@@ -1,6 +1,0 @@
-main:
-  -> create semaphores
-  -> fork N times (N = philosophers)
-    -> kol child ykhdem routine dyalo (eat/sleep/think)
-  -> waitpid bchi condition
-  -> cleanup: sem_unlink, kill all if necessary
