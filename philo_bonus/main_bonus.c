@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 18:09:19 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/02 17:28:34 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/04 19:53:33 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	parss_2(t_data *da)
 int	arg_parss(t_data *p)
 {
 	if (!p || p->number_of_philo <= 0 || p->time_todie < 0 || \
-	p->time_toeat < 0 || p->time_tosleep < 0 || p->time_tothink < 0)
+	p->time_toeat < 0 || p->time_tosleep < 0)
 		return (0);
 	return (1);
 }
@@ -49,7 +49,8 @@ int	ft_check_args(int ac, char **av, t_data *data)
 {
 	int	i;
 
-	if (ac < 5 || ac > 6 || data->number_of_philo > 200 || parss_2(data))
+	if (ac < 5 || ac > 6 || data->number_of_philo > 200 || parss_2(data) || \
+	data->number_of_time_to_eat <= 0)
 		return (0);
 	i = 1;
 	while (i < ac)

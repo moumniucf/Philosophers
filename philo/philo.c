@@ -40,7 +40,7 @@ int	parss_2(t_data *da)
 int	arg_parss(t_data *p)
 {
 	if (!p || p->number_of_philo <= 0 || p->time_todie < 0 || \
-	p->time_toeat < 0 || p->time_tosleep < 0 || p->time_tothink < 0)
+	p->time_toeat < 0 || p->time_tosleep < 0 )
 		return (0);
 	return (1);
 }
@@ -63,7 +63,7 @@ int	main(int ac, char **av)
 		return (1);
 	ft_arg_in(av, data);
 	if (ac < 5 || ac > 6 || data->number_of_philo > 200 || \
-	parss_2(data) || data->number_of_time_to_eat == 0 || \
+	parss_2(data) || data->number_of_time_to_eat <= 0 || \
 	data->number_of_philo == 0)
 	{
 		ft_help_norm(data);

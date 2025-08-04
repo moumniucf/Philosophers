@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 09:52:42 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/03 16:38:02 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/04 19:46:37 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef struct s_data
 	long long			time_todie;
 	long long			time_toeat;
 	long long			time_tosleep;
-	long long			time_tothink;
 	int					is_dead;
 	sem_t				*dead;
 	sem_t				*fork;
