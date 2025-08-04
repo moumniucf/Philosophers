@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 16:18:58 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/01 20:24:35 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/04 21:50:12 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	ft_atoi(char *str)
 	while (str[i] >= '0' && str[i] <= '9' && str[i])
 	{
 		rst = rst * 10 + str[i] - 48;
-		if ((size_t)rst > LLONG_MAX && x == -1)
+		if ((size_t)rst > INT_MAX && x == -1)
 			return (0);
-		if ((size_t)rst > LLONG_MAX)
+		if ((size_t)rst > INT_MAX)
 			return (-1);
 		i++;
 	}
