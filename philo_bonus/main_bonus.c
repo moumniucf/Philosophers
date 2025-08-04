@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 18:09:19 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/04 19:53:33 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/04 21:00:51 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_check_args(int ac, char **av, t_data *data)
 	int	i;
 
 	if (ac < 5 || ac > 6 || data->number_of_philo > 200 || parss_2(data) || \
-	data->number_of_time_to_eat <= 0)
+	data->number_of_time_to_eat == 0)
 		return (0);
 	i = 1;
 	while (i < ac)
