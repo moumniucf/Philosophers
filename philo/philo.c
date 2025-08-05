@@ -45,13 +45,6 @@ int	arg_parss(t_data *p)
 	return (1);
 }
 
-void	ft_help_norm(t_data *data)
-{
-	printf("Error\n");
-	free(data);
-	exit(1);
-}
-
 int	main(int ac, char **av)
 {
 	t_data	*data;
@@ -66,13 +59,13 @@ int	main(int ac, char **av)
 	parss_2(data) || data->number_of_time_to_eat == 0 || \
 	data->number_of_philo == 0 || (av[5] && ft_atoi(av[5]) <= 0))
 	{
-		ft_help_norm(data);
+		return (printf("Error\n"), free(data), 1);
 	}
 	while (i < ac)
 	{
 		if (invalid_nuber(av[i]) == 0)
 		{
-			ft_help_norm(data);
+			return (printf("Error\n"), free(data), 1);
 		}
 		i++;
 	}

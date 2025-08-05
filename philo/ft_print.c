@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 15:28:35 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/03 13:08:52 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/05 18:28:49 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,21 +107,21 @@ void	ft_help_main(t_data *data)
 {
 	char	*monit;
 
-	if (pthread_mutex_init(&data->dead, NULL) != 0)
-		return ;
-	if (pthread_mutex_init(&data->print, NULL) != 0)
-		return ;
-	if (pthread_mutex_init(&data->time, NULL) != 0)
-		return ;
-	if (pthread_mutex_init(&data->meals, NULL))
-		return ;
+	pthread_mutex_init(&data->dead, NULL);
+	pthread_mutex_init(&data->print, NULL);
+	pthread_mutex_init(&data->time, NULL);
+	pthread_mutex_init(&data->meals, NULL);
 	data->time_start = ft_get_time();
 	ft_fork_in(data);
 	ft_philo_in(data);
 	ft_create_thread(data);
 	monit = ft_monitoring(data);
 	if (monit == NULL && data->ph->meal_eat != 1)
+	{
+		ft_join_thread(data);
+		cleanup(data);
 		return ;
+	}
 	ft_join_thread(data);
 	cleanup(data);
 }

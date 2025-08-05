@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 15:18:30 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/03 13:08:20 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/05 10:26:53 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ long long	ft_get_time(void)
 	struct timeval	time;
 	long long		x;
 
-	if (gettimeofday(&time, NULL) != 0)
-		printf("ERROR IN TIME\n");
+	gettimeofday(&time, NULL);
 	x = ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 	return (x);
 }

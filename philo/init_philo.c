@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:43:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/04 21:46:58 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/05 18:28:59 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,7 @@ void	ft_create_thread(t_data *data)
 	i = 0;
 	while (i < data->number_of_philo)
 	{
-		if (pthread_create(&data->ph[i].ts, NULL, \
-		&ft_routine_philo, &data->ph[i]) != 0)
-			return ;
+		pthread_create(&data->ph[i].ts, NULL, &ft_routine_philo, &data->ph[i]);
 		i++;
 	}
 }
@@ -83,8 +81,7 @@ void	ft_join_thread(t_data *data)
 	i = 0;
 	while (i < data->number_of_philo)
 	{
-		if (pthread_join(data->ph[i].ts, NULL) != 0)
-			return ;
+		pthread_join(data->ph[i].ts, NULL);
 		i++;
 	}
 }
