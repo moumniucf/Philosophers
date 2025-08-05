@@ -3,3 +3,4 @@
 *.DS_Store
 *.philo_bonus
 *.philo
+*.gitignore
