@@ -1,3 +1,5 @@
 *.o
 *.vscode
 *.DS_Store
+*.philo_bonus
+*.philo
