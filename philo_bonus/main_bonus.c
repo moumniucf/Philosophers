@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 18:09:19 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/05 18:53:10 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/07 16:03:59 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_check_args(int ac, char **av, t_data *data)
 	int	i;
 
 	if (ac < 5 || ac > 6 || data->number_of_philo > 200 || parss_2(data) || \
-	(av[5] && ft_atoi(av[5]) <= 0))
+	(av[5] && ft_atoi(av[5]) <= 0) || ft_atoi(av[1]) < 0)
 		return (0);
 	i = 1;
 	while (i < ac)

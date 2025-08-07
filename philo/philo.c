@@ -57,7 +57,8 @@ int	main(int ac, char **av)
 	ft_arg_in(av, data);
 	if (ac < 5 || ac > 6 || data->number_of_philo > 200 || \
 	parss_2(data) || data->number_of_time_to_eat == 0 || \
-	data->number_of_philo == 0 || (av[5] && ft_atoi(av[5]) <= 0))
+	data->number_of_philo == 0 || (av[5] && ft_atoi(av[5]) <= 0) || \
+	ft_atoi(av[1]) < 0)
 	{
 		return (printf("Error\n"), free(data), 1);
 	}
