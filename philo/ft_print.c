@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 15:28:35 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/09 15:53:38 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/09 17:47:41 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,17 @@ void	ft_help_time(t_philo *ph, long long time)
 {
 	long long	t1;
 	long long	t2;
+	long long	last_m;
 
+	pthread_mutex_lock(&ph->data->time);
+	last_m = ph->last_meal;
+	pthread_mutex_unlock(&ph->data->time);
 	t1 = ft_get_time();
 	while (1)
 	{
 		t2 = ft_get_time();
 		ph->current_time = t2;
-		if (ft_is_dead(ph))
+		if (last_m && (ph->current_time - last_m) >= ph->data->time_todie)
 			break ;
 		if ((t2 - t1) >= time)
 			break ;

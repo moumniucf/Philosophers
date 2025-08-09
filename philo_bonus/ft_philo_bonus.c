@@ -6,41 +6,25 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:23:58 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/09 15:58:26 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/09 17:05:41 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
-int	ft_is_dead(t_philo *ph)
-{
-	long long	last_m;
 
-	last_m = ph->last_meal;
-	if (last_m && (ph->current_time - last_m) >= ph->data->time_todie)
-	{
-		if (ph->data->is_dead == 0)
-		{
-			sem_post(ph->data->print);
-			ph->data->is_dead = 1;
-			printf("%lld\t%d\tdied\n", \
-			(ph->current_time - ph->data->time_start), ph->id);
-			exit(1);
-		}
-		return (1);
-	}
-	return (0);
-}
 void	ft_help_time(t_philo *ph, long long time)
 {
 	long long	t1;
 	long long	t2;
+	long long	last_m;
 
+	last_m = ph->last_meal;
 	t1 = ft_get_time();
 	while (1)
 	{
 		t2 = ft_get_time();
 		ph->current_time = t2;
-		if (ft_is_dead(ph))
+		if (last_m && (ph->current_time - last_m) >= ph->data->time_todie)
 			break ;
 		if ((t2 - t1) >= time)
 			break ;

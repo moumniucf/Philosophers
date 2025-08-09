@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 11:50:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/09 15:54:41 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/09 17:23:16 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,12 @@ int	ft_is_dead(t_philo *ph)
 	pthread_mutex_lock(&ph->data->time);
 	last_m = ph->last_meal;
 	pthread_mutex_unlock(&ph->data->time);
-	if (last_m && (ph->current_time - last_m) >= ph->data->time_todie)
+	if (last_m && (ft_get_time() - last_m) >= ph->data->time_todie)
 	{
 		pthread_mutex_lock(&ph->data->dead);
-		if (ph->data->is_dead == 0)
-		{
-			ph->data->is_dead = 1;
-			printf("%lld\t%d\tdied\n", \
-			(ph->current_time - ph->data->time_start), ph->id);
-		}
+		ph->data->is_dead = 1;
+		printf("%lld\t%d\tdied\n", \
+		(ft_get_time() - ph->data->time_start), ph->id);
 		pthread_mutex_unlock(&ph->data->dead);
 		return (1);
 	}
