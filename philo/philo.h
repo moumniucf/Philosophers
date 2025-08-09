@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 18:30:04 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/05 18:38:30 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/09 15:54:28 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_philo
 	int					meal_c;
 	_Atomic int			meal_eat;
 	long long			last_meal;
-	long long			current_time;
+	_Atomic long long	current_time;
 	pthread_mutex_t		*l_f;
 	pthread_mutex_t		*r_f;
 	pthread_t			ts;
@@ -66,6 +66,6 @@ void		*ft_monitoring(t_data *data);
 void		ft_print(t_philo *ph, char *str);
 void		*ft_routine_help(t_philo *ph);
 void		ft_help_main(t_data *data);
-void		ft_help_time(long long time);
+void		ft_help_time(t_philo *ph, long long time);
 
 #endif

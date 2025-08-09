@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 15:18:30 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/05 10:26:53 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/09 15:52:22 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,9 @@ void	*ft_monitoring(t_data *data)
 	while (1 && data->number_of_philo != 1)
 	{
 		i = 0;
+		pthread_mutex_lock(&data->time);
 		data->ph->current_time = ft_get_time();
+		pthread_mutex_unlock(&data->time);
 		while (i < data->number_of_philo)
 		{
 			if (ft_checkdead(data, i) == 1)
@@ -91,7 +93,7 @@ void	*ft_monitoring(t_data *data)
 				return (NULL);
 			i++;
 		}
-		ft_help_time(50);
+		ft_help_time(data->ph, 50);
 	}
 	return (NULL);
 }

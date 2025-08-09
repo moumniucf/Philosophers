@@ -6,13 +6,31 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:23:58 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/03 11:24:44 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/09 15:58:26 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
+int	ft_is_dead(t_philo *ph)
+{
+	long long	last_m;
 
-void	ft_help_time(long long time)
+	last_m = ph->last_meal;
+	if (last_m && (ph->current_time - last_m) >= ph->data->time_todie)
+	{
+		if (ph->data->is_dead == 0)
+		{
+			sem_post(ph->data->print);
+			ph->data->is_dead = 1;
+			printf("%lld\t%d\tdied\n", \
+			(ph->current_time - ph->data->time_start), ph->id);
+			exit(1);
+		}
+		return (1);
+	}
+	return (0);
+}
+void	ft_help_time(t_philo *ph, long long time)
 {
 	long long	t1;
 	long long	t2;
@@ -21,11 +39,12 @@ void	ft_help_time(long long time)
 	while (1)
 	{
 		t2 = ft_get_time();
-		if ((t2 - t1) >= time)
-		{
+		ph->current_time = t2;
+		if (ft_is_dead(ph))
 			break ;
-		}
-		usleep(500);
+		if ((t2 - t1) >= time)
+			break ;
+		usleep(50);
 	}
 }
 
@@ -47,7 +66,7 @@ void	*ft_monitoring(void *arg)
 			(ft_get_time() - ph->data->time_start), ph->id);
 			exit(1);
 		}
-		ft_help_time(50);
+		ft_help_time(ph, 50);
 	}
 	return (NULL);
 }
@@ -67,11 +86,11 @@ void	ft_help2(t_philo *ph)
 	sem_wait(ph->data->meal);
 	ph->meal_c++;
 	sem_post(ph->data->meal);
-	ft_help_time(ph->data->time_toeat);
+	ft_help_time(ph, ph->data->time_toeat);
 	sem_post(ph->data->fork);
 	sem_post(ph->data->fork);
 	ft_print(ph, "is sleeping");
-	ft_help_time(ph->data->time_tosleep);
+	ft_help_time(ph, ph->data->time_tosleep);
 	ft_print(ph, "is thinking");
 }
 
@@ -97,7 +116,7 @@ void	*ft_routine_philo(t_philo	*ph)
 	if (ph->data->number_of_philo == 1)
 	{
 		ft_print(ph, "has taken a fork");
-		ft_help_time(ph->data->time_todie);
+		ft_help_time(ph, ph->data->time_todie);
 		ft_print(ph, "died");
 		exit(1);
 	}
@@ -105,7 +124,7 @@ void	*ft_routine_philo(t_philo	*ph)
 		return (NULL);
 	sem_post(ph->data->lock_meal);
 	if (ph->id % 2 != 0)
-		ft_help_time(100);
+		ft_help_time(ph, 100);
 	ft_routine_help(ph);
 	pthread_join(ph->ts, NULL);
 	return (NULL);

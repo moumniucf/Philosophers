@@ -6,13 +6,13 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 15:28:35 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/05 18:28:49 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/09 15:53:38 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_help_time(long long time)
+void	ft_help_time(t_philo *ph, long long time)
 {
 	long long	t1;
 	long long	t2;
@@ -21,10 +21,11 @@ void	ft_help_time(long long time)
 	while (1)
 	{
 		t2 = ft_get_time();
-		if ((t2 - t1) >= time)
-		{
+		ph->current_time = t2;
+		if (ft_is_dead(ph))
 			break ;
-		}
+		if ((t2 - t1) >= time)
+			break ;
 		usleep(50);
 	}
 }
@@ -42,11 +43,11 @@ void	ft_help2(t_philo *ph)
 	pthread_mutex_lock(&ph->data->meals);
 	ph->meal_c++;
 	pthread_mutex_unlock(&ph->data->meals);
-	ft_help_time(ph->data->time_toeat);
+	ft_help_time(ph, ph->data->time_toeat);
 	pthread_mutex_unlock(ph->l_f);
 	pthread_mutex_unlock(ph->r_f);
 	ft_print(ph, "is sleeping");
-	ft_help_time(ph->data->time_tosleep);
+	ft_help_time(ph, ph->data->time_tosleep);
 	ft_print(ph, "is thinking");
 }
 
