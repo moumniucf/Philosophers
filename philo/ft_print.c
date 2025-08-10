@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 15:28:35 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/09 17:47:41 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/10 17:38:57 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_help_time(t_philo *ph, long long time)
 	{
 		t2 = ft_get_time();
 		ph->current_time = t2;
-		if (last_m && (ph->current_time - last_m) >= ph->data->time_todie)
+		if ((ft_get_time() - last_m) >= ph->data->time_todie)
 			break ;
 		if ((t2 - t1) >= time)
 			break ;
@@ -36,6 +36,8 @@ void	ft_help_time(t_philo *ph, long long time)
 
 void	ft_help2(t_philo *ph)
 {
+	if (ph->id % 2 == 0)
+		ft_print(ph, "is thinking");
 	pthread_mutex_lock(ph->l_f);
 	ft_print(ph, "has taken a fork");
 	pthread_mutex_lock(ph->r_f);
@@ -64,7 +66,7 @@ void	*ft_routine_help(t_philo *ph)
 		pthread_mutex_lock(&ph->data->dead);
 		deads = ph->data->is_dead;
 		pthread_mutex_unlock(&ph->data->dead);
-		if (deads == 1)
+		if (ph->data->is_dead == 1)
 		{
 			break ;
 		}
