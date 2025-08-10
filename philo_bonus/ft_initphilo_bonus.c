@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 09:54:21 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/03 10:34:41 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/10 18:32:03 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	ft_init_philo(t_data *data)
 void	ft_init_pfork(t_data *data)
 {
 	int	i;
+	int pid;
 
 	i = 0;
 	data->pid = malloc(sizeof(pid_t) * data->number_of_philo);
@@ -76,7 +77,10 @@ void	ft_init_pfork(t_data *data)
 		return ;
 	while (i < data->number_of_philo)
 	{
-		data->pid[i] = fork();
+		pid = fork();
+		if(pid == -1)
+			return ;
+		data->pid[i] = pid;
 		if (data->pid[i] == 0)
 		{
 			ft_routine_philo(&data->ph[i]);
