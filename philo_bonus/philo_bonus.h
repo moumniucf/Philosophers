@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 09:52:42 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/09 17:07:26 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/11 10:06:04 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_philo
 	int					meal_c;
 	int					meal_eat;
 	_Atomic long long	last_meal;
-	long long			current_time;
+	_Atomic long long	current_time;
 	pthread_t			ts;
 	t_data				*data;
 }	t_philo;

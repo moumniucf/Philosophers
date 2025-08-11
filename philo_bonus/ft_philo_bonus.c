@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:23:58 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/09 17:05:41 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/11 10:05:27 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ void	ft_help_time(t_philo *ph, long long time)
 	while (1)
 	{
 		t2 = ft_get_time();
+		sem_wait(ph->data->time);
 		ph->current_time = t2;
+		sem_post(ph->data->time);
 		if (last_m && (ph->current_time - last_m) >= ph->data->time_todie)
 			break ;
 		if ((t2 - t1) >= time)
