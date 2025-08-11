@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 15:28:35 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/10 17:38:57 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/11 13:11:13 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ void	ft_help_time(t_philo *ph, long long time)
 	while (1)
 	{
 		t2 = ft_get_time();
+		pthread_mutex_lock(&ph->data->time);
 		ph->current_time = t2;
-		if ((ft_get_time() - last_m) >= ph->data->time_todie)
+		pthread_mutex_unlock(&ph->data->time);
+		if (last_m && (ft_get_time() - last_m) >= ph->data->time_todie)
 			break ;
 		if ((t2 - t1) >= time)
 			break ;
@@ -36,8 +38,6 @@ void	ft_help_time(t_philo *ph, long long time)
 
 void	ft_help2(t_philo *ph)
 {
-	if (ph->id % 2 == 0)
-		ft_print(ph, "is thinking");
 	pthread_mutex_lock(ph->l_f);
 	ft_print(ph, "has taken a fork");
 	pthread_mutex_lock(ph->r_f);
@@ -53,15 +53,15 @@ void	ft_help2(t_philo *ph)
 	pthread_mutex_unlock(ph->l_f);
 	pthread_mutex_unlock(ph->r_f);
 	ft_print(ph, "is sleeping");
-	ft_help_time(ph, ph->data->time_tosleep);
 	ft_print(ph, "is thinking");
+	ft_help_time(ph, ph->data->time_tosleep);
 }
 
 void	*ft_routine_help(t_philo *ph)
 {
 	int	deads;
 
-	while (1)
+	while (1 && ph->data->is_dead != 1)
 	{
 		pthread_mutex_lock(&ph->data->dead);
 		deads = ph->data->is_dead;

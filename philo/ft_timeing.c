@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 15:18:30 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/09 15:52:22 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/11 12:57:49 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,9 @@ int	ft_checkdead(t_data *data, int i)
 {
 	if (ft_is_dead(&data->ph[i]))
 	{
-		if (pthread_mutex_lock(&data->dead) != 0)
-			return (0);
+		pthread_mutex_lock(&data->dead);
 		data->is_dead = 1;
-		if (pthread_mutex_unlock(&data->dead) != 0)
-			return (0);
+		pthread_mutex_unlock(&data->dead);
 		return (1);
 	}
 	return (0);
@@ -78,13 +76,15 @@ int	ft_checkmeal(t_data *data, int i)
 void	*ft_monitoring(t_data *data)
 {
 	int	i;
+	long long help;
 
 	while (1 && data->number_of_philo != 1)
 	{
 		i = 0;
 		pthread_mutex_lock(&data->time);
-		data->ph->current_time = ft_get_time();
+		help = data->ph->current_time;
 		pthread_mutex_unlock(&data->time);
+		help = ft_get_time();
 		while (i < data->number_of_philo)
 		{
 			if (ft_checkdead(data, i) == 1)
@@ -93,7 +93,6 @@ void	*ft_monitoring(t_data *data)
 				return (NULL);
 			i++;
 		}
-		ft_help_time(data->ph, 50);
 	}
 	return (NULL);
 }
