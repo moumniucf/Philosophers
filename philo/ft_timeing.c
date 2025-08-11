@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 15:18:30 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/11 12:57:49 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/11 15:16:44 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ int	ft_checkmeal(t_data *data, int i)
 
 void	*ft_monitoring(t_data *data)
 {
-	int	i;
-	long long help;
+	int			i;
+	long long	help;
 
 	while (1 && data->number_of_philo != 1)
 	{

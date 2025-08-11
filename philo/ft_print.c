@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 15:28:35 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/11 14:43:25 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/11 15:50:54 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,20 +66,14 @@ void	*ft_routine_help(t_philo *ph)
 		pthread_mutex_lock(&ph->data->dead);
 		deads = ph->data->is_dead;
 		pthread_mutex_unlock(&ph->data->dead);
-		if (ph->data->is_dead == 1)
+		ft_help2(ph);
+		if (ph->data->number_of_time_to_eat != -1)
 		{
-			break ;
-		}
-		else
-		{
-			ft_help2(ph);
-			if (ph->data->number_of_time_to_eat != -1)
+			if (ph->meal_c >= ph->data->number_of_time_to_eat && \
+			!ft_is_dead(ph))
 			{
-				if (ph->meal_c >= ph->data->number_of_time_to_eat)
-				{
-					ph->meal_eat = 1;
-					return (NULL);
-				}
+				ph->meal_eat = 1;
+				return (NULL);
 			}
 		}
 	}
