@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ucfdev <ucfdev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 15:28:35 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/11 15:50:54 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/13 23:31:32 by ucfdev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_help_time(t_philo *ph, long long time)
+void ft_help_time(t_philo *ph, long long time)
 {
-	long long	t1;
-	long long	t2;
-	long long	last_m;
+	long long t1;
+	long long t2;
+	long long last_m;
 
 	pthread_mutex_lock(&ph->data->time);
 	last_m = ph->last_meal;
@@ -29,14 +29,14 @@ void	ft_help_time(t_philo *ph, long long time)
 		ph->current_time = t2;
 		pthread_mutex_unlock(&ph->data->time);
 		if (last_m && (ft_get_time() - last_m) >= ph->data->time_todie)
-			break ;
+			break;
 		if ((t2 - t1) >= time)
-			break ;
+			break;
 		usleep(50);
 	}
 }
 
-void	ft_help2(t_philo *ph)
+void ft_help2(t_philo *ph)
 {
 	pthread_mutex_lock(ph->l_f);
 	ft_print(ph, "has taken a fork");
@@ -57,9 +57,9 @@ void	ft_help2(t_philo *ph)
 	ft_help_time(ph, ph->data->time_tosleep);
 }
 
-void	*ft_routine_help(t_philo *ph)
+void *ft_routine_help(t_philo *ph)
 {
-	int	deads;
+	int deads;
 
 	while (1 && ph->data->is_dead != 1)
 	{
@@ -69,8 +69,8 @@ void	*ft_routine_help(t_philo *ph)
 		ft_help2(ph);
 		if (ph->data->number_of_time_to_eat != -1)
 		{
-			if (ph->meal_c >= ph->data->number_of_time_to_eat && \
-			!ft_is_dead(ph))
+			if (ph->meal_c >= ph->data->number_of_time_to_eat &&
+				!ft_is_dead(ph))
 			{
 				ph->meal_eat = 1;
 				return (NULL);
@@ -80,49 +80,67 @@ void	*ft_routine_help(t_philo *ph)
 	return (NULL);
 }
 
-void	cleanup(t_data *data)
+void cleanup(t_data *data)
 {
-	int	j;
+	int j;
 
 	j = 0;
+	if (!data)
+		return;
 	while (j < data->number_of_philo)
 	{
 		if (pthread_mutex_destroy(&data->fork[j]) != 0)
-			return ;
+			return;
 		j++;
 	}
 	if (pthread_mutex_destroy(&data->dead) != 0)
-		return ;
+		return;
 	if (pthread_mutex_destroy(&data->print) != 0)
-		return ;
+		return;
 	if (pthread_mutex_destroy(&data->time) != 0)
-		return ;
+		return;
 	if (pthread_mutex_destroy(&data->meals))
-		return ;
+		return;
 	free(data->fork);
 	free(data->ph);
 	free(data);
 }
 
-void	ft_help_main(t_data *data)
+void ft_help_main(t_data *data)
 {
-	char	*monit;
+	char *monit;
 
 	pthread_mutex_init(&data->dead, NULL);
 	pthread_mutex_init(&data->print, NULL);
 	pthread_mutex_init(&data->time, NULL);
 	pthread_mutex_init(&data->meals, NULL);
 	data->time_start = ft_get_time();
-	ft_fork_in(data);
-	ft_philo_in(data);
-	ft_create_thread(data);
+	if (ft_fork_in(data) != 0)
+	{
+		cleanup(data);
+		return;
+	}
+	if (ft_philo_in(data) != 0)
+	{
+		cleanup(data);
+		return;
+	}
+	if (ft_create_thread(data) != 0)
+	{
+		cleanup(data);
+		return;
+	}
 	monit = ft_monitoring(data);
 	if (monit == NULL && data->ph->meal_eat != 1)
 	{
 		ft_join_thread(data);
 		cleanup(data);
-		return ;
+		return;
 	}
-	ft_join_thread(data);
+	if (ft_join_thread(data) != 0)
+	{
+		cleanup(data);
+		return;
+	}
 	cleanup(data);
 }
