@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   routine_philo.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ucfdev <ucfdev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 11:50:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/13 22:44:02 by ucfdev           ###   ########.fr       */
+/*   Updated: 2025/08/14 10:58:30 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int ft_is_dead(t_philo *ph)
+int	ft_is_dead(t_philo *ph)
 {
-	long long last_m;
+	long long	last_m;
 
 	pthread_mutex_lock(&ph->data->time);
 	last_m = ph->last_meal;
@@ -24,8 +24,8 @@ int ft_is_dead(t_philo *ph)
 		if (ph->data->is_dead != 1)
 		{
 			pthread_mutex_lock(&ph->data->dead);
-			printf("%lld\t%d\tdied\n",
-				   (ft_get_time() - ph->data->time_start), ph->id);
+			printf("%lld\t%d\tdied\n", \
+			(ft_get_time() - ph->data->time_start), ph->id);
 			ph->data->is_dead = 1;
 			pthread_mutex_unlock(&ph->data->dead);
 			return (1);
@@ -34,9 +34,9 @@ int ft_is_dead(t_philo *ph)
 	return (0);
 }
 
-void *ft_routine_philo(void *arg)
+void	*ft_routine_philo(void *arg)
 {
-	t_philo *ph;
+	t_philo	*ph;
 
 	ph = (t_philo *)arg;
 	if (!arg)

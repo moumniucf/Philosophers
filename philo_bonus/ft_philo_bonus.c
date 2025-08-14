@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_philo_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ucfdev <ucfdev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:23:58 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/13 18:36:23 by ucfdev           ###   ########.fr       */
+/*   Updated: 2025/08/14 10:20:21 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-void ft_help_time(t_philo *ph, long long time)
+void	ft_help_time(t_philo *ph, long long time)
 {
-	long long t1;
-	long long t2;
-	long long last_m;
+	long long	t1;
+	long long	t2;
+	long long	last_m;
 
 	last_m = ph->last_meal;
 	t1 = ft_get_time();
@@ -27,17 +27,17 @@ void ft_help_time(t_philo *ph, long long time)
 		ph->current_time = t2;
 		sem_post(ph->data->time);
 		if (last_m && (ph->current_time - last_m) >= ph->data->time_todie)
-			break;
+			break ;
 		if ((t2 - t1) >= time)
-			break;
+			break ;
 		usleep(50);
 	}
 }
 
-void *ft_monitoring(void *arg)
+void	*ft_monitoring(void *arg)
 {
-	t_philo *ph;
-	long long meals;
+	t_philo		*ph;
+	long long	meals;
 
 	ph = (t_philo *)arg;
 	while (1)
@@ -48,8 +48,8 @@ void *ft_monitoring(void *arg)
 		if (meals && (ft_get_time() - meals) >= ph->data->time_todie)
 		{
 			sem_wait(ph->data->print);
-			printf("%lld\t%d\tdied\n",
-				   (ft_get_time() - ph->data->time_start), ph->id);
+			printf("%lld\t%d\tdied\n", \
+			(ft_get_time() - ph->data->time_start), ph->id);
 			exit(1);
 		}
 		ft_help_time(ph, 50);
@@ -57,7 +57,7 @@ void *ft_monitoring(void *arg)
 	return (NULL);
 }
 
-void ft_help2(t_philo *ph)
+void	ft_help2(t_philo *ph)
 {
 	sem_wait(ph->data->meal);
 	sem_post(ph->data->meal);
@@ -80,7 +80,7 @@ void ft_help2(t_philo *ph)
 	ft_print(ph, "is thinking");
 }
 
-void *ft_routine_help(t_philo *ph)
+void	*ft_routine_help(t_philo *ph)
 {
 	while (1)
 	{
@@ -96,7 +96,7 @@ void *ft_routine_help(t_philo *ph)
 	return (NULL);
 }
 
-void *ft_routine_philo(t_philo *ph)
+void	*ft_routine_philo(t_philo *ph)
 {
 	ph->current_time = ft_get_time();
 	if (ph->data->number_of_philo == 1)

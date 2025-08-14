@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 09:52:42 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/11 10:06:04 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/14 11:29:39 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ int			ft_isdigit(int c);
 void		ft_arg_in(char **av, t_data *da);
 void		ft_print(t_philo *ph, char *str);
 void		ft_help_time(t_philo *ph, long long time);
-void		ft_init_philo(t_data *da);
-void		ft_seminit(t_data *da);
+int			ft_init_philo(t_data *da);
+int			ft_seminit(t_data *da);
 void		*ft_routine_philo(t_philo *ph);
-void		ft_init_pfork(t_data *data);
+int			ft_init_pfork(t_data *data);
 void		*ft_routine_help(t_philo *ph);
 long long	ft_get_time(void);
 int			ft_is_dead(t_philo *ph);
