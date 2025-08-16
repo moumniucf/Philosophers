@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 15:18:30 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/14 10:49:45 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/16 18:19:31 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,10 @@ void	*ft_monitoring(t_data *data)
 			if (ft_checkdead(data, i) == 1)
 				return (NULL);
 			if (ft_checkmeal(data, i) == 1)
+			{
+				printf("ph: [%d]|id: [%d]\n", data->ph[i].id, data->ph[i].meal_c);
 				return (NULL);
+			}
 			i++;
 		}
 	}

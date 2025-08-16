@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 18:30:04 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/16 11:02:59 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/16 17:42:36 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_data
 	pthread_mutex_t	time;
 	long long		time_start;
 	int				number_of_philo;
+	int				finish;
 	int				number_of_time_to_eat;
 	struct s_philo	*ph;
 }	t_data;
@@ -69,5 +70,6 @@ void		ft_help_main(t_data *data);
 void		ft_help_time(t_philo *ph, long long time);
 void		ft_help_norm_main(t_data *data);
 void		cleanup(t_data *data);
+int			ft_checkmeal(t_data *data, int i);
 
 #endif

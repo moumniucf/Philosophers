@@ -6,7 +6,7 @@
 /*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 15:28:35 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/16 11:17:28 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/16 17:44:57 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_help_time(t_philo *ph, long long time)
 		pthread_mutex_lock(&ph->data->time);
 		ph->current_time = t2;
 		pthread_mutex_unlock(&ph->data->time);
-		if (last_m && (ft_get_time() - last_m) >= ph->data->time_todie)
+		if ((last_m && (ft_get_time() - last_m) >= ph->data->time_todie))
 			break ;
 		if ((t2 - t1) >= time)
 			break ;
@@ -69,9 +69,10 @@ void	*ft_routine_help(t_philo *ph)
 		ft_help2(ph);
 		if (ph->data->number_of_time_to_eat != -1)
 		{
-			if (ph->meal_c >= ph->data->number_of_time_to_eat && \
-			!ft_is_dead(ph))
+			if (ph->meal_c >= ph->data->number_of_time_to_eat && !ft_is_dead(ph))
 			{
+				//printf("is: [%d]|id: [%d]\n", ph->id, ph->meal_c);
+				//printf("died: [%d]\n", ph->data->is_dead);
 				ph->meal_eat = 1;
 				return (NULL);
 			}
