@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_philo_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ucfdev <ucfdev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:23:58 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/16 15:47:30 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/17 00:39:54 by ucfdev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	ft_help2(t_philo *ph)
 	ft_print(ph, "is thinking");
 }
 
-void	*ft_routine_help(t_philo *ph)
+int	ft_routine_help(t_philo *ph)
 {
 	while (1)
 	{
@@ -89,11 +89,13 @@ void	*ft_routine_help(t_philo *ph)
 		{
 			if (ph->meal_c >= ph->data->number_of_time_to_eat)
 			{
-				exit(0);
+				// printf(":%d:\n", ph->meal_c);
+				return (1);
+				// exit(0);
 			}
 		}
 	}
-	return (NULL);
+	return (0);
 }
 
 void	*ft_routine_philo(t_philo *ph)

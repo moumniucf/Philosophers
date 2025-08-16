@@ -6,7 +6,7 @@
 /*   By: ucfdev <ucfdev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 15:28:35 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/16 21:59:58 by ucfdev           ###   ########.fr       */
+/*   Updated: 2025/08/17 00:06:41 by ucfdev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,7 @@ void	cleanup(t_data *data)
 		return ;
 	while (j < data->number_of_philo)
 	{
-		if (pthread_mutex_destroy(&data->fork[j]) != 0)
-			return ;
+		pthread_mutex_destroy(&data->fork[j]);
 		j++;
 	}
 	if (pthread_mutex_destroy(&data->dead) != 0)

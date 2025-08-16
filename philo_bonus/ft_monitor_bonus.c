@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_monitor_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ucfdev <ucfdev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 15:18:13 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/02 17:30:36 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/17 00:36:38 by ucfdev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_waitp(t_data *da)
 	while (i < da->number_of_philo)
 	{
 		waitpid(-1, &status, 0);
-		if (WEXITSTATUS(status) == 1)
+		if (WEXITSTATUS(status) == 1 )
 		{
 			ft_kill_all(da);
 			break ;
