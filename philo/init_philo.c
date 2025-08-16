@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_philo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ucfdev <ucfdev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:43:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/16 11:01:56 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/16 21:10:24 by ucfdev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	ft_arg_in(char **av, t_data *da)
 	da->time_todie = ft_atoi(av[2]);
 	da->time_toeat = ft_atoi(av[3]);
 	da->time_tosleep = ft_atoi(av[4]);
+	da->salina = 0;
+	da->finish = 0;
 	if (av[5])
 		da->number_of_time_to_eat = ft_atoi(av[5]);
 	else

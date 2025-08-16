@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine_philo.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ucfdev <ucfdev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 11:50:40 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/16 15:03:55 by youmoumn         ###   ########.fr       */
+/*   Updated: 2025/08/16 21:51:52 by ucfdev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ void	*ft_routine_philo(void *arg)
 	{
 		if (pthread_mutex_lock(ph->l_f) != 0)
 			return (NULL);
-		ft_print(ph, "has taken a fork");
+		ft_print(ph->data, ph, "has taken a fork");
 		ft_help_time(ph, ph->data->time_todie);
-		ft_print(ph, "died");
+		ft_print(ph->data, ph, "died");
 		return (NULL);
 	}
 	if (ph->id % 2 != 0)
 		ft_help_time(ph, ph->data->time_toeat);
-	ft_routine_help(ph);
+	ft_routine_help(ph, ph->data);
 	return (NULL);
 }
