@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ucfdev <ucfdev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 15:28:35 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/15 21:03:07 by ucfdev           ###   ########.fr       */
+/*   Updated: 2025/08/16 11:17:28 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	ft_help2(t_philo *ph)
 	pthread_mutex_unlock(ph->l_f);
 	pthread_mutex_unlock(ph->r_f);
 	ft_print(ph, "is sleeping");
-	ft_print(ph, "is thinking");
 	ft_help_time(ph, ph->data->time_tosleep);
+	ft_print(ph, "is thinking");
 }
 
 void	*ft_routine_help(t_philo *ph)
@@ -80,7 +80,7 @@ void	*ft_routine_help(t_philo *ph)
 	return (NULL);
 }
 
-void	cleanup(t_data *data, int x)
+void	cleanup(t_data *data)
 {
 	int	j;
 
@@ -101,10 +101,8 @@ void	cleanup(t_data *data, int x)
 		return ;
 	if (pthread_mutex_destroy(&data->meals))
 		return ;
-	if (x != 1)
-		free(data->fork);
-	if (x != 2)
-		free(data->ph);
+	free(data->fork);
+	free(data->ph);
 	free(data);
 }
 
@@ -122,13 +120,13 @@ void	ft_help_main(t_data *data)
 	if (monit == NULL && data->ph->meal_eat != 1)
 	{
 		ft_join_thread(data);
-		cleanup(data, 0);
+		cleanup(data);
 		return ;
 	}
 	if (ft_join_thread(data) != 0)
 	{
-		cleanup(data, 0);
+		cleanup(data);
 		return ;
 	}
-	cleanup(data, 0);
+	cleanup(data);
 }
