@@ -6,7 +6,7 @@
 /*   By: ucfdev <ucfdev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:23:58 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/17 00:39:54 by ucfdev           ###   ########.fr       */
+/*   Updated: 2025/08/17 01:07:29 by ucfdev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ void	ft_help2(t_philo *ph)
 	sem_wait(ph->data->meal);
 	ph->meal_c++;
 	sem_post(ph->data->meal);
+	sem_wait(ph->data->print);
+	sem_post(ph->data->print);
 	ft_help_time(ph, ph->data->time_toeat);
 	sem_post(ph->data->fork);
 	sem_post(ph->data->fork);
@@ -80,7 +82,7 @@ void	ft_help2(t_philo *ph)
 	ft_print(ph, "is thinking");
 }
 
-int	ft_routine_help(t_philo *ph)
+void	*ft_routine_help(t_philo *ph)
 {
 	while (1)
 	{
@@ -89,13 +91,11 @@ int	ft_routine_help(t_philo *ph)
 		{
 			if (ph->meal_c >= ph->data->number_of_time_to_eat)
 			{
-				// printf(":%d:\n", ph->meal_c);
-				return (1);
-				// exit(0);
+				exit(1);
 			}
 		}
 	}
-	return (0);
+	return (NULL);
 }
 
 void	*ft_routine_philo(t_philo *ph)

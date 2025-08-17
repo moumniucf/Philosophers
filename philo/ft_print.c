@@ -6,7 +6,7 @@
 /*   By: ucfdev <ucfdev@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 15:28:35 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/17 00:06:41 by ucfdev           ###   ########.fr       */
+/*   Updated: 2025/08/17 00:51:55 by ucfdev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	ft_help2(t_philo *ph, t_data *data)
 	ft_print(data, ph, "is sleeping");
 	ft_help_time(ph, ph->data->time_tosleep);
 	ft_print(data, ph, "is thinking");
+	printf("{{%d}}\n", ph->data->salina);
 }
 
 void	*ft_routine_help(t_philo *ph, t_data *data)
