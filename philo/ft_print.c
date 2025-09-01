@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ucfdev <ucfdev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 15:28:35 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/17 00:51:55 by ucfdev           ###   ########.fr       */
+/*   Updated: 2025/08/17 10:55:10 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_help_time(t_philo *ph, long long time)
 		pthread_mutex_lock(&ph->data->time);
 		ph->current_time = t2;
 		pthread_mutex_unlock(&ph->data->time);
-		if ((last_m && (ft_get_time() - last_m) >= ph->data->time_todie))
+		if ((last_m && (ft_get_time() - last_m) > ph->data->time_todie))
 			break ;
 		if ((t2 - t1) >= time)
 			break ;
@@ -49,16 +49,15 @@ void	ft_help2(t_philo *ph, t_data *data)
 	pthread_mutex_lock(&ph->data->meals);
 	ph->meal_c++;
 	pthread_mutex_unlock(&ph->data->meals);
-	pthread_mutex_lock(&ph->data->salinae);	
+	pthread_mutex_lock(&ph->data->salinae);
 	ph->data->salina++;
-	pthread_mutex_unlock(&ph->data->salinae);	
+	pthread_mutex_unlock(&ph->data->salinae);
 	ft_help_time(ph, ph->data->time_toeat);
 	pthread_mutex_unlock(ph->r_f);
 	pthread_mutex_unlock(ph->l_f);
 	ft_print(data, ph, "is sleeping");
 	ft_help_time(ph, ph->data->time_tosleep);
 	ft_print(data, ph, "is thinking");
-	printf("{{%d}}\n", ph->data->salina);
 }
 
 void	*ft_routine_help(t_philo *ph, t_data *data)

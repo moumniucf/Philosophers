@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ucfdev <ucfdev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 18:30:04 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/17 00:04:33 by ucfdev           ###   ########.fr       */
+/*   Updated: 2025/08/17 10:08:35 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,5 @@ void		ft_help_main(t_data *data);
 void		ft_help_time(t_philo *ph, long long time);
 void		ft_help_norm_main(t_data *data);
 void		cleanup(t_data *data);
-// int			ft_checkmeal(t_data *data, int i);
 
 #endif

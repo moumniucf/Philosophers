@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_timeing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ucfdev <ucfdev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 15:18:30 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/17 00:08:28 by ucfdev           ###   ########.fr       */
+/*   Updated: 2025/08/17 10:10:20 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long long ft_get_time(void)
+long long	ft_get_time(void)
 {
 	struct timeval	time;
 	long long		x;
@@ -22,7 +22,7 @@ long long ft_get_time(void)
 	return (x);
 }
 
-void ft_print(t_data *data, t_philo *ph, char *str)
+void	ft_print(t_data *data, t_philo *ph, char *str)
 {
 	if (pthread_mutex_lock(&data->print) != 0)
 		return ;
@@ -45,7 +45,7 @@ void ft_print(t_data *data, t_philo *ph, char *str)
 		return ;
 }
 
-int ft_checkdead(t_data *data, int i)
+int	ft_checkdead(t_data *data, int i)
 {
 	if (ft_is_dead(&data->ph[i]))
 	{
@@ -60,15 +60,16 @@ int ft_checkdead(t_data *data, int i)
 	return (0);
 }
 
-int ft_checkmeal(t_data *data)
+int	ft_checkmeal(t_data *data)
 {
 	pthread_mutex_lock(&data->salinae);
-	if (data->number_of_time_to_eat != -1 && data->salina == data->number_of_philo * data->number_of_time_to_eat)
+	if (data->number_of_time_to_eat != -1 && \
+	data->salina == data->number_of_philo * data->number_of_time_to_eat)
 	{
-		pthread_mutex_lock(&data->meals);
+		pthread_mutex_lock(&data->finishing);
 		data->ph->meal_eat = 1;
 		data->finish = 1;
-		pthread_mutex_unlock(&data->meals);
+		pthread_mutex_unlock(&data->finishing);
 		pthread_mutex_unlock(&data->salinae);
 		return (1);
 	}
@@ -76,11 +77,11 @@ int ft_checkmeal(t_data *data)
 	return (0);
 }
 
-void *ft_monitoring(t_data *data)
+void	*ft_monitoring(t_data *data)
 {
 	int	i;
 
-	while (data->finish == 0)
+	while (data->finish == 0 && data->number_of_philo != 1)
 	{
 		if (ft_checkmeal(data) == 1)
 		{

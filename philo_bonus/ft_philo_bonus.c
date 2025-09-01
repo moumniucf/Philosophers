@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_philo_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ucfdev <ucfdev@student.42.fr>              +#+  +:+       +#+        */
+/*   By: youmoumn <youmoumn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:23:58 by youmoumn          #+#    #+#             */
-/*   Updated: 2025/08/17 01:07:29 by ucfdev           ###   ########.fr       */
+/*   Updated: 2025/08/17 09:57:50 by youmoumn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	*ft_monitoring(void *arg)
 		sem_wait(ph->data->lock_meal);
 		meals = ph->last_meal;
 		sem_post(ph->data->lock_meal);
-		if (meals && (ft_get_time() - meals) >= ph->data->time_todie)
+		if (meals && (ft_get_time() - meals) > ph->data->time_todie)
 		{
 			sem_wait(ph->data->print);
 			printf("%lld\t%d\tdied\n", \
